@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/01/31 16:02:32 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/02 12:04:37 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,18 @@ void			ft_list_remove_if(t_list **begin_list, void *data_ref
 void			ft_list_reverse(t_list **begin_list);
 size_t			ft_list_size(t_list *begin_list);
 void			ft_list_sort(t_list **first, int (*compare)(void*, void*));
+
+/*
+** ft_array: work in progress
+*/
+
+typedef struct	s_array
+{
+	void		*data;
+	size_t		length;
+	size_t		size;
+}				t_array;
+
+t_array			*ft_array_new(size_t length, size_t size);
 
 #endif

@@ -1,1 +1,4 @@
 remove -g flag
+
+tests:
+INT_MAX, INT_MIN

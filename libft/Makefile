@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/01/31 19:15:15 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/02 12:04:50 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -123,7 +123,8 @@ COMPILED =		ft_islower.o \
 				ft_max.o \
 				ft_ptrswp.o \
 				ft_ptrequ.o \
-				get_next_line.o
+				get_next_line.o \
+				ft_array_new.o
 
 all: $(NAME)
 

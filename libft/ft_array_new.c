@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_array_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/02 15:51:07 by tfleming         ###   ########.fr       */
+/*   Created: 2015/02/02 11:45:56 by tfleming          #+#    #+#             */
+/*   Updated: 2015/02/02 12:02:08 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-/*
-** authorized functions:
-** write
-** malloc
-** free
-** exit
-*/
+t_array				*ft_array_new(size_t length, size_t size)
+{
+	t_array			*new;
 
-# include "libft.h"
-# include <stdio.h> // nope
-
-typedef char			t_bool;
-
-void					push_swap(int length, int array[length]);
-
-#endif
+	new = malloc(sizeof(t_array));
+	new->length = length;
+	new->size = size;
+	new->data = malloc(length * size);
+	return (new);
+}
