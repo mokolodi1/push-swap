@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/01/31 19:19:15 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/03 17:45:29 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,9 @@ LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h
 
 COMPILED =			main.o \
-					push_swap.o
+					push_swap.o \
+					print_operators.o \
+					handle_operators.o
 
 all: $(NAME)
 

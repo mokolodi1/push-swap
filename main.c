@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/02 18:09:21 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/03 16:29:11 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,26 @@ static void			parse_arguments(int length, char **arguments
 	}
 }
 
-static int			maximum_number(int length, int numbers[length])
+static void			set_minimum_maximum(int length, int *numbers
+										, int *minimum, int *maximum)
 {
-	int				maximum;
+	int				min;
+	int				max;
 	int				i;
 
-	maximum = numbers[0];
+	min = numbers[0];
+	max = numbers[0];
 	i = 1;
 	while (i < length)
 	{
-		if (numbers[i] > maximum)
-			maximum = numbers[i];
+		if (numbers[i] < min)
+			min = numbers[i];
+		else if (numbers[i] > max)
+			max = numbers[i];
 		i++;
 	}
-	return (maximum);
-}
-
-static int			minimum_number(int length, int numbers[length])
-{
-	int				minimum;
-	int				i;
-
-	minimum = numbers[0];
-	i = 1;
-	while (i < length)
-	{
-		if (numbers[i] < minimum)
-			minimum = numbers[i];
-		i++;
-	}
-	return (minimum);
+	*minimum = min;
+	*maximum = max;
 }
 
 static void			validate_arguments(int length, int numbers[length]
@@ -82,13 +72,17 @@ static void			validate_arguments(int length, int numbers[length]
 
 int					main(int argc, char **argv)
 {
+	int				minimum;
+	int				maximum;
+	int				numbers[argc - 1];
+
 	argc--;
 	argv++;
 	if (argc > 0)
 	{
 		parse_arguments(argc, argv, numbers);
-		validate_arguments(argc, numbers, minimum_number(argc, numbers)
-							, maximum_number(argc, numbers));
+		set_minimum_maximum(argc, numbers, &minimum, &maximum);
+		validate_arguments(argc, numbers, minimum, maximum);
 		push_swap(argc, numbers);
 	}
 	else
