@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:25:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/03 17:58:28 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/04 11:58:33 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,17 @@ static void			print_op(t_operator operator)
 		ft_putstr("nope");
 }
 
-static void			print_rest(t_list *operators)
+void				print_operators(t_operator *operators, int length)
 {
-	if (operators)
-	{
-		print_rest(operators->next);
-		print_op((t_operator)operators->data);
-		ft_putstr(" ");
-	}
-}
+	int				i;
 
-void				print_operators(t_list *operators)
-{
-	if (operators)
+	while (i < length - 1)
 	{
-		print_rest(operators->next);
-		print_op((t_operator)operators->data);
+		print_op(operators[i]);
+		ft_putchar(' ');
+		i++;
 	}
+	if (length > 1)
+		print_op(operators[i]);
 	ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:16:31 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/03 17:43:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/04 12:26:37 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void				push_swap(int length, int array[length])
 {
 	t_stack			first;
 	t_stack			second;
-	t_list			*operators;
+	t_search		search;
 
 	first.data = array;
 	first.begin = first.data;
@@ -26,7 +26,14 @@ void				push_swap(int length, int array[length])
 	second.begin = second.data;
 	second.count = 0;
 	second.length = length;
-	operators = NULL;
-	handle_operators(&operators, &first, &second);
-	print_operators(operators);
+	ft_bzero(&search, sizeof(t_search));
+	search.maximum = MAX_DEPTH;
+	search.operators = malloc(search.maximum * sizeof(t_operator));
+	if (length > 1)
+	{
+		calculate_operators(&search, &first, &second);
+		if (!search.solution)
+			ft_putstr("NO SOLUTION FOUND!\n");// change
+	}
+	print_operators(search.solution, search.solution_length);
 }
