@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/02 12:04:50 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/05 15:02:48 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =			libft.a
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -O3
+FLAGS =			-Wall -Werror -Wextra -g
 INCLUDES =		"includes"
 
 COMPILED =		ft_islower.o \

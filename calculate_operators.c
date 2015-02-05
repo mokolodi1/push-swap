@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:43:47 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/04 11:50:49 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 15:53:46 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void			found_solution(t_search *search)
 	solution_bytes = search->solution_length * sizeof(t_operator);
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
+	search->maximum = search->current - 1;
 }
 
 void				calculate_operators(t_search *search
@@ -51,12 +52,12 @@ void				calculate_operators(t_search *search
 		found_solution(search);
 		return ;
 	}
-	if (search->current + 1 == search->maximum)
+	if (search->current + 1 >= search->maximum)
 		return ;
 	search->current++;
 	try_swap(search, first, second);
 	try_push(search, first, second);
-	try_rotate(search, first, second);
-	try_reverse_rotate(search, first, second);
+	/* try_rotate(search, first, second); */
+	/* try_reverse_rotate(search, first, second); */
 	search->current--;
 }

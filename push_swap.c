@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:16:31 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/04 12:26:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 15:59:38 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void				push_swap(int length, int array[length])
 	search.operators = malloc(search.maximum * sizeof(t_operator));
 	if (length > 1)
 	{
+		search.current = -1;
 		calculate_operators(&search, &first, &second);
 		if (!search.solution)
 			ft_putstr("NO SOLUTION FOUND!\n");// change

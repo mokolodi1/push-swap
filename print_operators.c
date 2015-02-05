@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:25:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/04 11:58:33 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 15:42:13 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void				print_operators(t_operator *operators, int length)
 {
 	int				i;
 
+	i = 0;
 	while (i < length - 1)
 	{
 		print_op(operators[i]);
 		ft_putchar(' ');
 		i++;
 	}
-	if (length > 1)
+	if (length > 0)
 		print_op(operators[i]);
 	ft_putchar('\n');
 }

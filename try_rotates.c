@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 11:34:37 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/04 11:36:23 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 13:06:05 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 static void			rotate(t_stack *stack)
 {
-	(void)stack;
+	*get_before_first_number(stack) = *get_last_number(stack);
+	stack->begin--;
 }
 
 static void			reverse_rotate(t_stack *stack)
 {
-	(void)stack;
+	*get_after_last_number(stack) = *get_last_number(stack);
+	stack->begin++;
 }
 
 void				try_rotate(t_search *search

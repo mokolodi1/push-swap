@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/04 12:01:07 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 15:52:55 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,15 @@
 # include "libft.h"
 # include <stdio.h> // nope
 
-# define MAX_DEPTH			3;
+# define MAX_DEPTH				6;
+# define LAST_OPERATOR(SEARCH)  (*(SEARCH)->operators + (SEARCH)->current - 1)
+/* # define LAST_NUMBER(STACK) \ */
+/* 	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) */
+/* 	? ((STACK)->begin + (STACK)->count - 1) \ */
+/* 	: ((STACK)->data + (((STACK)->data + (STACK)->length) \ */
+/* 			- ((STACK)->begin + (STACK)->count)) - 1)) */
+/* # define SECOND_LAST_NUMBER(STACK) */
+
 
 typedef char		t_bool;
 
@@ -66,7 +74,11 @@ void				try_rotate(t_search *search
 										, t_stack *first, t_stack *second);
 void				try_reverse_rotate(t_search *search
 										, t_stack *first, t_stack *second);
-t_operator			reverse_operator(t_operator operator);
 void				print_operators(t_operator *operators, int length);
+int					*get_last_number(t_stack *stack);
+int					*get_before_last_number(t_stack *stack);
+int					*get_after_last_number(t_stack *stack);
+int					*get_before_first_number(t_stack *stack);
+int					*get_after_first_number(t_stack *stack);
 
 #endif
