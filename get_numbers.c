@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/05 11:36:39 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/05 15:22:23 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/05 20:04:59 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int					*get_last_number(t_stack *stack)
 {
 	if (stack->begin + stack->count <= stack->data + stack->length)
 		return (stack->begin + stack->count - 1);
-	return (stack->data + ((stack->data + stack->length)
-							- (stack->begin + stack->count)) - 1);
+	return (stack->data + ((stack->begin + stack->count)
+						   - (stack->data + stack->length)) - 1);
 }
 
 int					*get_before_last_number(t_stack *stack)
