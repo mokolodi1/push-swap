@@ -31,7 +31,6 @@ void				push_swap(int length, int array[length])
 	search.operators = malloc(search.maximum * sizeof(t_operator));
 	if (length > 1)
 	{
-		search.current = -1;
 		calculate_operators(&search, &first, &second);
 		if (!search.solution)
 			ft_putstr("NO SOLUTION FOUND!\n");// change

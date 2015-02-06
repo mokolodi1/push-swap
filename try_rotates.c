@@ -14,13 +14,13 @@
 
 static void			rotate(t_stack *stack)
 {
-	*get_before_first_number(stack) = *get_last_number(stack);
+	*get_before_first_number(stack) = *GET_LAST_NUMBER(stack);
 	stack->begin--;
 }
 
 static void			reverse_rotate(t_stack *stack)
 {
-	*get_after_last_number(stack) = *get_last_number(stack);
+	*GET_AFTER_LAST_NUMBER(stack) = *stack->begin;
 	stack->begin++;
 }
 

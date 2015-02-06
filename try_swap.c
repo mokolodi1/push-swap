@@ -25,13 +25,12 @@ static t_bool		swap(t_stack *stack)
 {
 	if (stack->count < 2)
 		return (0);
-	swap_numbers(get_last_number(stack), get_before_last_number(stack));
+	swap_numbers(GET_LAST_NUMBER(stack), GET_BEFORE_LAST_NUMBER(stack));
 	return (1);
 }
 
 void				try_swap(t_search *search, t_stack *first, t_stack *second)
 {
-	// first if doesn't work
 	if (!search->current || *(search->operators + search->current) - 1 > SWAP_S)
 	{
 		if (swap(first))

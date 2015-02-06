@@ -24,15 +24,32 @@
 # include "libft.h"
 # include <stdio.h> // nope
 
-# define MAX_DEPTH				6;
+# define MAX_DEPTH		16;
 # define LAST_OPERATOR(SEARCH)  (*(SEARCH)->operators + (SEARCH)->current - 1)
-/* # define LAST_NUMBER(STACK) \ */
-/* 	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) */
-/* 	? ((STACK)->begin + (STACK)->count - 1) \ */
-/* 	: ((STACK)->data + (((STACK)->data + (STACK)->length) \ */
-/* 			- ((STACK)->begin + (STACK)->count)) - 1)) */
-/* # define SECOND_LAST_NUMBER(STACK) */
+# define GET_LAST_NUMBER(STACK) \
+	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) \
+		? ((STACK)->begin + (STACK)->count - 1)							  \
+		: ((STACK)->data + (((STACK)->begin + (STACK)->count) \
+								- ((STACK)->data + (STACK)->length)) - 1))
 
+# define GET_BEFORE_LAST_NUMBER(STACK) \
+	((GET_LAST_NUMBER(STACK) == (STACK)->data) \
+	? ((STACK)->data + (STACK)->length - 1) \
+	: (GET_LAST_NUMBER(STACK) - 1))
+
+# define GET_AFTER_LAST_NUMBER(STACK) \
+	((GET_LAST_NUMBER(STACK) + 1 < (STACK)->data + (STACK)->length)	\
+		? (GET_LAST_NUMBER(STACK) + 1) \
+		: ((STACK)->data))
+
+# define GET_BEFORE_FIRST_NUMBER(STACK) \
+	((stack->begin > stack->data) \
+		? (stack->begin - 1) \
+		: (stack->data + stack->length - 1))
+
+/* if (stack->begin + 1 < stack->data + stack->length) */
+/* 		return (stack->begin + 1); */
+/* 	return (stack->data); */
 
 typedef char		t_bool;
 

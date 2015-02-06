@@ -14,27 +14,27 @@
 
 // change to macros
 
-int					*get_last_number(t_stack *stack)
-{
-	if (stack->begin + stack->count <= stack->data + stack->length)
-		return (stack->begin + stack->count - 1);
-	return (stack->data + ((stack->begin + stack->count)
-						   - (stack->data + stack->length)) - 1);
-}
+/* int					*get_last_number(t_stack *stack) */
+/* { */
+/* 	if (stack->begin + stack->count <= stack->data + stack->length) */
+/* 		return (stack->begin + stack->count - 1); */
+/* 	return (stack->data + ((stack->begin + stack->count) */
+/* 						   - (stack->data + stack->length)) - 1); */
+/* } */
 
-int					*get_before_last_number(t_stack *stack)
-{
-	if (get_last_number(stack) == stack->data)
-		return (stack->data + stack->length - 1);
-	return (get_last_number(stack) - 1);
-}
+/* int					*get_before_last_number(t_stack *stack) */
+/* { */
+/* 	if (GET_LAST_NUMBER(stack) == stack->data) */
+/* 		return (stack->data + stack->length - 1); */
+/* 	return (GET_LAST_NUMBER(stack) - 1); */
+/* } */
 
-int					*get_after_last_number(t_stack *stack)
-{
-	if (get_last_number(stack) + 1 < stack->data + stack->length)
-		return (get_last_number(stack) + 1);
-	return (stack->data);
-}
+/* int					*get_after_last_number(t_stack *stack) */
+/* { */
+/* 	if (GET_LAST_NUMBER(stack) + 1 < stack->data + stack->length) */
+/* 		return (GET_LAST_NUMBER(stack) + 1); */
+/* 	return (stack->data); */
+/* } */
 
 int					*get_before_first_number(t_stack *stack)
 {

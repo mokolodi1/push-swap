@@ -37,11 +37,11 @@ static void			found_solution(t_search *search)
 {
 	size_t			solution_bytes;
 
-	search->solution_length = search->current;
+	search->solution_length = search->current < 0 ? 0 : search->current;
 	solution_bytes = search->solution_length * sizeof(t_operator);
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
-	search->maximum = search->current - 1;
+	search->maximum = search->solution_length - 1;
 }
 
 void				calculate_operators(t_search *search
@@ -52,12 +52,12 @@ void				calculate_operators(t_search *search
 		found_solution(search);
 		return ;
 	}
-	if (search->current + 1 >= search->maximum)
+	if (search->current >= search->maximum)
 		return ;
 	search->current++;
 	try_swap(search, first, second);
 	try_push(search, first, second);
-	/* try_rotate(search, first, second); */
+	try_rotate(search, first, second);
 	/* try_reverse_rotate(search, first, second); */
 	search->current--;
 }
