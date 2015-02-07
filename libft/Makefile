@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/05 15:02:48 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/07 17:06:05 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =			libft.a
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -O3
+FLAGS =			-Wall -Werror -Wextra -g
 INCLUDES =		"includes"
 
 COMPILED =		ft_islower.o \
@@ -121,10 +121,12 @@ COMPILED =		ft_islower.o \
 				ft_min.o \
 				ft_min_umax.o \
 				ft_max.o \
+				ft_intswp.o \
 				ft_ptrswp.o \
 				ft_ptrequ.o \
 				get_next_line.o \
-				ft_array_new.o
+				ft_array_new.o \
+				ft_quicksort.o
 
 all: $(NAME)
 

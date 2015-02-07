@@ -6,48 +6,44 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:43:47 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/05 15:53:46 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/07 17:49:02 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int			is_sorted(int *array, int length)
+static int			is_finished(t_stack *first, t_stack *second, int *solution)
 {
-	int				i;
-
-	i = 1;
-	while (i < length)
+	if (second->count == 0)
 	{
-		if (array[i - 1] > array[i])
+		if (first->begin == first->data)
+			return (ft_memcmp(first->data, solution
+								, first->length * sizeof(int)) == 0);
+		if (ft_memcmp(first->begin, solution
+						, (first->begin + first->count
+							- (first->data + first->length)) * sizeof(int))
+			|| ft_memcmp(first->data, solution
+							, (first->begin - first->data) * sizeof(int)))
 			return (0);
-		i++;
 	}
 	return (1);
-}
-
-static int			is_finished(t_stack *first, t_stack *second)
-{
-	if (second->count == 0 && first->data == first->begin)
-		return (is_sorted(first->data, first->length));
-	return (0);
 }
 
 static void			found_solution(t_search *search)
 {
 	size_t			solution_bytes;
 
-	search->solution_length = search->current < 0 ? 0 : search->current;
+	search->solution_length = search->current + 1;
 	solution_bytes = search->solution_length * sizeof(t_operator);
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
 	search->maximum = search->solution_length - 1;
 }
 
-void				calculate_operators(t_search *search
-										, t_stack *first, t_stack *second)
+void				calculate_operators(t_search *search, t_stack *first
+										, t_stack *second)
 {
-	if (is_finished(first, second))
+	if (is_finished(first, second, search->sorted_numbers))
 	{
 		found_solution(search);
 		return ;
@@ -56,8 +52,14 @@ void				calculate_operators(t_search *search
 		return ;
 	search->current++;
 	try_swap(search, first, second);
+	if (search->current >= search->maximum)
+		return ;
 	try_push(search, first, second);
+	if (search->current >= search->maximum)
+		return ;
 	try_rotate(search, first, second);
-	/* try_reverse_rotate(search, first, second); */
+	if (search->current >= search->maximum)
+		return ;
+	try_reverse_rotate(search, first, second);
 	search->current--;
 }

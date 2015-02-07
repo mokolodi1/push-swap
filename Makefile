@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/05 12:46:28 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/07 16:36:14 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =				push_swap
 
 CC =				gcc
-FLAGS =				-Wall -Werror -Wextra -O3
+FLAGS =				-Wall -Werror -Wextra -g
 
 LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h
@@ -25,7 +25,6 @@ COMPILED =			main.o \
 					try_swap.o \
 					try_push.o \
 					try_rotates.o \
-					get_numbers.o
 
 all: $(NAME)
 

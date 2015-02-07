@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/02 12:04:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/07 16:24:03 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,10 @@ int				ft_min(int a, int b);
 uintmax_t		ft_min_umax(uintmax_t a, uintmax_t b);
 int				ft_max(int a, int b);
 void			ft_ptrswp(void **first, void **second);
+void			ft_intswp(int *first, int *second);
 int				ft_ptrequ(const void *first, const void *second);
+
+void			ft_quicksort(int length, int *array);
 
 /*
 ** get_next_line

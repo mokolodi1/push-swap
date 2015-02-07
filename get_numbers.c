@@ -6,13 +6,13 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/05 11:36:39 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/05 20:04:59 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/07 14:29:00 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// change to macros
+// remove this
 
 /* int					*get_last_number(t_stack *stack) */
 /* { */
