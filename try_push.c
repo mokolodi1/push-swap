@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 11:37:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/05 20:06:47 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/09 17:40:41 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,27 @@ static t_bool		push(t_stack *source, t_stack *destination)
 	return (1);
 }
 
-void				try_push(t_search *search, t_stack *first, t_stack *second)
+t_bool				try_push(t_search *search, t_stack *first, t_stack *second)
 {
-	if ((!search->current || *(search->operators + search->current) - 1 != PUSH_B)
+	t_bool			found;
+
+	if ((!search->current || search->operators[search->current - 1] != PUSH_B)
 		&& push(first, second))
 	{
 		search->operators[search->current] = PUSH_A;
-		calculate_operators(search, first, second);
+		found = calculate_operators(search, first, second);
 		push(second, first);
+		if (found)
+			return (1);
 	}
-	if ((!search->current || *(search->operators + search->current) - 1 != PUSH_A)
+	if ((!search->current || search->operators[search->current - 1] != PUSH_A)
 		&& push(second, first))
 	{
 		search->operators[search->current] = PUSH_B;
-		calculate_operators(search, first, second);
+		found = calculate_operators(search, first, second);
 		push(first, second);
+		if (found)
+			return (1);
 	}
+	return (0);
 }

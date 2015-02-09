@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/07 16:40:29 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/09 19:21:53 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,32 @@
 # include "libft.h"
 # include <stdio.h> // nope
 
-# define MAX_DEPTH		8;
-# define LAST_OPERATOR(SEARCH)  (*(SEARCH)->operators + (SEARCH)->current - 1)
+# define MAX_DEPTH		10
+
 # define GET_LAST_NUMBER(STACK) \
 	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) \
-		? ((STACK)->begin + (STACK)->count - 1)							  \
+	 ? ((STACK)->begin + (STACK)->count - 1)							\
 		: ((STACK)->data + (((STACK)->begin + (STACK)->count) \
-								- ((STACK)->data + (STACK)->length)) - 1))
+							- ((STACK)->data + (STACK)->length)) - 1))
 
 # define GET_BEFORE_LAST_NUMBER(STACK) \
 	((GET_LAST_NUMBER(STACK) == (STACK)->data) \
-		? ((STACK)->data + (STACK)->length - 1) \
+	 ? ((STACK)->data + (STACK)->length - 1)	\
 		: (GET_LAST_NUMBER(STACK) - 1))
 
 # define GET_AFTER_LAST_NUMBER(STACK) \
-	((GET_LAST_NUMBER(STACK) + 1 < (STACK)->data + (STACK)->length)	\
-		? (GET_LAST_NUMBER(STACK) + 1) \
+	((GET_LAST_NUMBER(STACK) + 1 < (STACK)->data + (STACK)->length) \
+	 ? (GET_LAST_NUMBER(STACK) + 1)							\
 		: ((STACK)->data))
 
 # define GET_BEFORE_FIRST_NUMBER(STACK) \
 	(((STACK)->begin > (STACK)->data) \
-		? ((STACK)->begin - 1) \
-		: ((STACK)->data + (STACK)->length - 1))
+	 ? ((STACK)->begin - 1)				\
+	 : ((STACK)->data + (STACK)->length - 1))
 
 # define GET_AFTER_FIRST_NUMBER(STACK) \
-	(((STACK)->begin + 1 < (STACK)->data + (STACK)->length) \
-		? ((STACK)->begin + 1) \
+	(((STACK)->begin + 1 < (STACK)->data + (STACK)->length)	\
+	 ? ((STACK)->begin + 1)									\
 		: ((STACK)->data))
 
 
@@ -86,13 +86,13 @@ typedef struct		s_search
 }					t_search;
 
 void				push_swap(int length, int array[length]);
-void				calculate_operators(t_search *search, t_stack *first
+t_bool				calculate_operators(t_search *search, t_stack *first
 										, t_stack *second);
-void				try_swap(t_search *search, t_stack *first, t_stack *second);
-void				try_push(t_search *search, t_stack *first, t_stack *second);
-void				try_rotate(t_search *search
+t_bool				try_swap(t_search *search, t_stack *first, t_stack *second);
+t_bool				try_push(t_search *search, t_stack *first, t_stack *second);
+t_bool				try_rotate(t_search *search
 										, t_stack *first, t_stack *second);
-void				try_reverse_rotate(t_search *search
+t_bool				try_reverse_rotate(t_search *search
 										, t_stack *first, t_stack *second);
 void				print_operators(t_operator *operators, int length);
 int					*get_last_number(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 11:34:37 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/07 14:30:54 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/09 17:41:18 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,57 @@ static void			reverse_rotate(t_stack *stack)
 	stack->begin = GET_AFTER_FIRST_NUMBER(stack);
 }
 
-void				try_rotate(t_search *search
+t_bool				try_rotate(t_search *search
 										, t_stack *first, t_stack *second)
 {
+	t_bool			found;
+
+	// add don't do stuff (don't do just after reverse rotates)
 	rotate(first);
 	search->operators[search->current] = ROTATE_A;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
 	reverse_rotate(first);
+	if (found)
+		return (1);
 	rotate(second);
 	search->operators[search->current] = ROTATE_B;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
+	if (found)
+	{
+		reverse_rotate(second);
+		return (1);
+	}
 	rotate(first);
 	search->operators[search->current] = ROTATE_A_B;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
 	reverse_rotate(first);
 	reverse_rotate(second);
+	return (found);
 }
 
-void				try_reverse_rotate(t_search *search
+t_bool				try_reverse_rotate(t_search *search
 										, t_stack *first, t_stack *second)
 {
+	t_bool			found;
+
 	reverse_rotate(first);
 	search->operators[search->current] = REVERSE_ROTATE_A;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
 	rotate(first);
+	if (found)
+		return (1);
 	reverse_rotate(second);
 	search->operators[search->current] = REVERSE_ROTATE_B;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
+	if (found)
+	{
+		rotate(second);
+		return (1);
+	}
 	reverse_rotate(first);
 	search->operators[search->current] = REVERSE_ROTATE_A_B;
-	calculate_operators(search, first, second);
+	found = calculate_operators(search, first, second);
 	rotate(first);
 	rotate(second);
+	return (found);
 }
