@@ -24,12 +24,15 @@ static void			reverse_rotate(t_stack *stack)
 	stack->begin = GET_AFTER_FIRST_NUMBER(stack);
 }
 
+/*
+** todo: add "don't do these" to rotate methods (don't try rra after ra)
+*/
+
 t_bool				try_rotate(t_search *search
 										, t_stack *first, t_stack *second)
 {
 	t_bool			found;
 
-	// add don't do stuff (don't do just after reverse rotates)
 	rotate(first);
 	search->operators[search->current] = ROTATE_A;
 	found = calculate_operators(search, first, second);

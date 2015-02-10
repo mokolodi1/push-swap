@@ -22,7 +22,6 @@
 */
 
 # include "libft.h"
-# include <stdio.h> // nope
 
 # define MAX_DEPTH		10
 

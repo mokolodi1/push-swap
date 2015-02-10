@@ -14,6 +14,7 @@
 
 static int			is_finished(t_stack *first, t_stack *second, int *solution)
 {
+	
 	if (second->count == 0)
 	{
 		if (first->begin == first->data)
@@ -39,7 +40,7 @@ static void			found_solution(t_search *search)
 	solution_bytes = search->solution_length * sizeof(t_operator);
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
-	search->maximum = search->current;
+	search->maximum = search->current - 1;
 }
 
 t_bool				calculate_operators(t_search *search, t_stack *first
