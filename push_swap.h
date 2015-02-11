@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/09 19:21:53 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/11 11:02:14 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,40 @@
 */
 
 # include "libft.h"
+# include <stdio.h>
 
-# define MAX_DEPTH		10
+# define F(STACK) ((STACK)->begin + (STACK)->count)
+# define S(STACK) ((STACK)->data + (STACK)->length)
 
-# define GET_LAST_NUMBER(STACK) \
-	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) \
-	 ? ((STACK)->begin + (STACK)->count - 1)							\
-		: ((STACK)->data + (((STACK)->begin + (STACK)->count) \
-							- ((STACK)->data + (STACK)->length)) - 1))
+# define GLN(ST) F(ST) <= S(ST) ? F(ST) - 1 : (ST)->data + 
 
-# define GET_BEFORE_LAST_NUMBER(STACK) \
-	((GET_LAST_NUMBER(STACK) == (STACK)->data) \
-	 ? ((STACK)->data + (STACK)->length - 1)	\
-		: (GET_LAST_NUMBER(STACK) - 1))
-
-# define GET_AFTER_LAST_NUMBER(STACK) \
-	((GET_LAST_NUMBER(STACK) + 1 < (STACK)->data + (STACK)->length) \
-	 ? (GET_LAST_NUMBER(STACK) + 1)							\
-		: ((STACK)->data))
-
-# define GET_BEFORE_FIRST_NUMBER(STACK) \
-	(((STACK)->begin > (STACK)->data) \
-	 ? ((STACK)->begin - 1)				\
-	 : ((STACK)->data + (STACK)->length - 1))
-
-# define GET_AFTER_FIRST_NUMBER(STACK) \
-	(((STACK)->begin + 1 < (STACK)->data + (STACK)->length)	\
-	 ? ((STACK)->begin + 1)									\
-		: ((STACK)->data))
-
+/*
+** # define GET_LAST_NUMBER(STACK)										\
+** 	(((STACK)->begin + (STACK)->count <= (STACK)->data + (STACK)->length) \
+** 	 ? ((STACK)->begin + (STACK)->count - 1)							\
+** 		: ((STACK)->data + (((STACK)->begin + (STACK)->count)			\
+** 							- ((STACK)->data + (STACK)->length)) - 1))
+** 
+** # define GET_BEFORE_LAST_NUMBER(STACK)	   \
+** 	((GET_LAST_NUMBER(STACK) == (STACK)->data)	\
+** 	 ? ((STACK)->data + (STACK)->length - 1)	\
+** 		: (GET_LAST_NUMBER(STACK) - 1))
+** 
+** # define GET_AFTER_LAST_NUMBER(STACK)								\
+** 	((GET_LAST_NUMBER(STACK) + 1 < (STACK)->data + (STACK)->length)		\
+** 	 ? (GET_LAST_NUMBER(STACK) + 1)										\
+** 		: ((STACK)->data))
+** 
+** # define GET_BEFORE_FIRST_NUMBER(STACK)		\
+** 	(((STACK)->begin > (STACK)->data)			\
+** 	 ? ((STACK)->begin - 1)						\
+** 	 : ((STACK)->data + (STACK)->length - 1))
+** 
+** # define GET_AFTER_FIRST_NUMBER(STACK)					\
+** 	(((STACK)->begin + 1 < (STACK)->data + (STACK)->length)	\
+** 	 ? ((STACK)->begin + 1)									\
+** 		: ((STACK)->data))
+*/
 
 typedef char		t_bool;
 
