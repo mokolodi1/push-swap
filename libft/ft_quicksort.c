@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/07 16:00:45 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/07 16:33:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/11 10:57:28 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void				ft_quicksort(int length, int *array)
 	int				partition;
 
 	if (length < 2)
-		return;
+		return ;
 	partition = array[length / 2];
 	lower = 0;
 	upper = length - 1;

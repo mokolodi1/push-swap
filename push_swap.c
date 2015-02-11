@@ -6,14 +6,14 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:16:31 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/09 18:01:49 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/11 10:57:52 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void				setup_stacks(t_stack *first, t_stack *second
-								 , int length, int array[length])
+									, int length, int array[length])
 {
 	first->data = array;
 	first->begin = first->data;
@@ -39,7 +39,7 @@ void				setup_search(t_search *search
 									, int length, int array[length])
 {
 	ft_bzero(search, sizeof(t_search));
-	search->maximum = MAX_DEPTH;
+	search->maximum = 2;
 	search->operators = malloc(search->maximum * sizeof(t_operator));
 	search->current = -1;
 	search->sorted_numbers = make_solution(length, array);
@@ -53,11 +53,18 @@ void				push_swap(int length, int array[length])
 
 	setup_stacks(&first, &second, length, array);
 	setup_search(&search, length, array);
-	if (length > 1)
+	while (length > 1)
 	{
 		calculate_operators(&search, &first, &second);
-		if (!search.solution)
-			ft_putstr("NO SOLUTION FOUND!\n");// change
+		if (search.solution)
+			break ;
+		else
+		{
+			search.maximum += 2;
+			ft_putstr("\rNo solutions found, increasing maximum depth to ");
+			ft_putnbr(search.maximum);
+		}
 	}
 	print_operators(search.solution, search.solution_length);
+	ft_putchar('\n');
 }

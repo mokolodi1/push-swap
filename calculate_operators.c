@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:43:47 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/09 21:06:40 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/11 10:57:12 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 static int			is_finished(t_stack *first, t_stack *second, int *solution)
 {
-	
+	int				bleh;
+
 	if (second->count == 0)
 	{
 		if (first->begin == first->data)
-			return (ft_memcmp(first->data, solution
-								, first->length * sizeof(int)) == 0);
+		{
+			bleh = ft_memcmp(first->data, solution
+								, first->length * sizeof(int)) == 0;
+			return (bleh);
+		}
 		if (ft_memcmp(first->begin, solution
-					  , (first->length - (first->begin - first->data))
+						, (first->length - (first->begin - first->data))
 							* sizeof(int))
 			|| ft_memcmp(first->data, solution + (first->length
 											- (first->begin - first->data))
@@ -41,6 +45,7 @@ static void			found_solution(t_search *search)
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
 	search->maximum = search->current - 1;
+	print_operators(search->operators, search->current + 1);
 }
 
 t_bool				calculate_operators(t_search *search, t_stack *first

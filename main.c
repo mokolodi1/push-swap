@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/05 15:40:09 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/11 10:57:42 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void			set_minimum_maximum(int length, int *numbers
 }
 
 static void			validate_arguments(int length, int numbers[length]
-									   , int minimum, int maximum)
+										, int minimum, int maximum)
 {
 	t_bool			switches[maximum - minimum + 2];
 	int				i;
