@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/11 11:17:31 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/12 17:45:19 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =			libft.a
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -O3
+FLAGS =			-Wall -Werror -Wextra -g
 INCLUDES =		"includes"
 
 COMPILED =		ft_islower.o \
@@ -98,10 +98,11 @@ COMPILED =		ft_islower.o \
 				ft_putnbr_fd.o \
 				ft_putnbr_large_fd.o \
 				ft_putstrarr.o \
-				ft_putarr.o \
 				ft_abs.o \
 				ft_abs_large.o \
 				ft_arrlen.o \
+				ft_expand_array.o \
+				ft_quicksort.o \
 				ft_list_create_elem.o \
 				ft_list_at.o \
 				ft_list_clear.o \
@@ -125,8 +126,10 @@ COMPILED =		ft_islower.o \
 				ft_ptrswp.o \
 				ft_ptrequ.o \
 				get_next_line.o \
-				ft_array_new.o \
-				ft_quicksort.o
+				ft_pq_create_new.o \
+				ft_pq_add.o \
+				ft_pq_remove.o \
+				ft_pq_resize_array.o
 
 all: $(NAME)
 
