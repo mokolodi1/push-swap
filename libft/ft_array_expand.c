@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pq_resize_array.c                               :+:      :+:    :+:   */
+/*   ft_array_expand.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/12 17:23:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/13 16:47:29 by tfleming         ###   ########.fr       */
+/*   Created: 2015/02/13 16:44:58 by tfleming          #+#    #+#             */
+/*   Updated: 2015/02/13 16:44:59 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_pq_resize_array(t_priority_queue *priority_queue)
+void				ft_array_expand(size_t bytes_before, size_t bytes_after
+									, void **data)
 {
-	size_t			byte_size;
+	void			*new;
 
-	byte_size = priority_queue->element_count * sizeof(void*);
-	ft_array_expand(byte_size, byte_size * 2, (void**)&priority_queue->data);
-	priority_queue->data_count = priority_queue->element_count * 2;
+	new = malloc(bytes_after);
+	ft_memcmp(new, *data, bytes_before);
+	free(data);
+	*data = new;
 }

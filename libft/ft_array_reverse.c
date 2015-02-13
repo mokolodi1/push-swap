@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pq_resize_array.c                               :+:      :+:    :+:   */
+/*   ft_array_reverse.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/12 17:23:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/13 16:47:29 by tfleming         ###   ########.fr       */
+/*   Created: 2015/02/13 16:40:52 by tfleming          #+#    #+#             */
+/*   Updated: 2015/02/13 16:42:05 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_pq_resize_array(t_priority_queue *priority_queue)
+void				ft_array_reverse(size_t length, int *array)
 {
-	size_t			byte_size;
+	size_t			i;
 
-	byte_size = priority_queue->element_count * sizeof(void*);
-	ft_array_expand(byte_size, byte_size * 2, (void**)&priority_queue->data);
-	priority_queue->data_count = priority_queue->element_count * 2;
+	i = 0;
+	while (i < length / 2)
+	{
+		ft_intswp(array + i, array + length - 1 - i);
+		i++;
+	}
 }

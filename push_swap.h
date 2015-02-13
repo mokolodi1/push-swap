@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/11 11:17:09 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 18:04:07 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_search
 {
 	int				maximum;
 	int				current;
+	int				minimum_check_depth;
 	t_operator		*operators;
 	t_operator		*solution;
 	int				solution_length;
@@ -85,12 +86,16 @@ typedef struct		s_search
 void				push_swap(int length, int array[length]);
 t_bool				calculate_operators(t_search *search, t_stack *first
 										, t_stack *second);
-t_bool				try_swap(t_search *search, t_stack *first, t_stack *second);
-t_bool				try_push(t_search *search, t_stack *first, t_stack *second);
+t_bool				try_swap(t_search *search, t_stack *first, t_stack *second
+										, t_operator last_operator);
+t_bool				try_push(t_search *search, t_stack *first, t_stack *second
+										, t_operator last_operator);
 t_bool				try_rotate(t_search *search
-										, t_stack *first, t_stack *second);
+										, t_stack *first, t_stack *second
+										, t_operator last_operator);
 t_bool				try_reverse_rotate(t_search *search
-										, t_stack *first, t_stack *second);
+										, t_stack *first, t_stack *second
+										, t_operator last_operator);
 void				print_operators(t_operator *operators, int length);
 int					*get_last_number(t_stack *stack);
 int					*get_before_last_number(t_stack *stack);

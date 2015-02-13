@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 11:36:38 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/09 17:39:57 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 18:06:38 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ static t_bool		swap(t_stack *stack)
 	return (1);
 }
 
-t_bool				try_swap(t_search *search, t_stack *first, t_stack *second)
+t_bool				try_swap(t_search *search, t_stack *first, t_stack *second
+								, t_operator last_operator)
 {
 	t_bool			found;
 
-	if (!search->current || search->operators[search->current - 1] > SWAP_S)
+	if (!last_operator || last_operator > SWAP_S)
 	{
 		if (swap(first))
 		{

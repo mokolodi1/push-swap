@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:43:47 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/11 10:57:12 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 18:04:02 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,23 @@ static void			found_solution(t_search *search)
 	search->solution = malloc(solution_bytes);
 	ft_memcpy(search->solution, search->operators, solution_bytes);
 	search->maximum = search->current - 1;
-	print_operators(search->operators, search->current + 1);
+	//print_operators(search->operators, search->current + 1);
+}
+
+static t_operator	get_last_operator(t_search *search)
+{
+	if (!search->current)
+		return (0);
+	return (search->operators[search->current - 1]);
 }
 
 t_bool				calculate_operators(t_search *search, t_stack *first
 										, t_stack *second)
 {
-	if (is_finished(first, second, search->sorted_numbers))
+	t_operator		last_operator;
+
+	if (search->current >= search->minimum_check_depth
+		&& is_finished(first, second, search->sorted_numbers))
 	{
 		found_solution(search);
 		return (1);
@@ -59,10 +69,11 @@ t_bool				calculate_operators(t_search *search, t_stack *first
 	if (search->current >= search->maximum)
 		return (0);
 	search->current++;
-	if (try_swap(search, first, second)
-		|| try_push(search, first, second)
-		|| try_rotate(search, first, second)
-		|| try_reverse_rotate(search, first, second))
+	last_operator = get_last_operator(search);
+	if (try_swap(search, first, second, last_operator)
+		|| try_push(search, first, second, last_operator)
+		|| try_rotate(search, first, second, last_operator)
+		|| try_reverse_rotate(search, first, second, last_operator))
 		search->current--;
 	else
 		search->current--;

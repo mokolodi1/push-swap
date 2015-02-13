@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 11:34:37 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/09 17:41:18 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 18:10:34 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,52 @@ static void			reverse_rotate(t_stack *stack)
 */
 
 t_bool				try_rotate(t_search *search
-										, t_stack *first, t_stack *second)
+										, t_stack *first, t_stack *second
+										, t_operator last_operator)
 {
 	t_bool			found;
-
-	rotate(first);
-	search->operators[search->current] = ROTATE_A;
-	found = calculate_operators(search, first, second);
-	reverse_rotate(first);
-	if (found)
-		return (1);
-	rotate(second);
-	search->operators[search->current] = ROTATE_B;
-	found = calculate_operators(search, first, second);
-	if (found)
+// I still need to finish this
+	if (first->count
+		&& (!last_operator || (last_operator != REVERSE_ROTATE_A
+								&& last_operator != REVERSE_ROTATE_A_B)))
 	{
-		reverse_rotate(second);
-		return (1);
+		rotate(first);
+		search->operators[search->current] = ROTATE_A;
+		found = calculate_operators(search, first, second);
+		reverse_rotate(first);
+		if (found)
+			return (1);
 	}
-	rotate(first);
-	search->operators[search->current] = ROTATE_A_B;
-	found = calculate_operators(search, first, second);
-	reverse_rotate(first);
-	reverse_rotate(second);
-	return (found);
+	if (second->count
+		&& (!last_operator || (last_operator != REVERSE_ROTATE_B
+								&& last_operator != REVERSE_ROTATE_A_B)))
+	{
+		rotate(second);
+		search->operators[search->current] = ROTATE_B;
+		found = calculate_operators(search, first, second);
+		reverse_rotate(second);
+		if (found)
+			return (1);
+	}
+	if (first->count && second->count
+		&& (!last_operator || (last_operator != REVERSE_ROTATE_A
+								&& last_operator != REVERSE_ROTATE_B
+								&& last_operator != REVERSE_ROTATE_A_B)))
+	{
+		rotate(first);
+		search->operators[search->current] = ROTATE_A_B;
+		found = calculate_operators(search, first, second);
+		reverse_rotate(first);
+		reverse_rotate(second);
+		if (found)
+			return (1);
+	}
+	return (0);
 }
 
 t_bool				try_reverse_rotate(t_search *search
-										, t_stack *first, t_stack *second)
+										, t_stack *first, t_stack *second
+										, t_operator last_operator)
 {
 	t_bool			found;
 

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:16:31 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/11 10:57:52 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 17:40:18 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void				setup_search(t_search *search
 {
 	ft_bzero(search, sizeof(t_search));
 	search->maximum = 2;
-	search->operators = malloc(search->maximum * sizeof(t_operator));
 	search->current = -1;
+	search->minimum_check_depth = 0;
+	search->operators = malloc(search->maximum * sizeof(t_operator));
 	search->sorted_numbers = make_solution(length, array);
 }
 
@@ -61,8 +62,9 @@ void				push_swap(int length, int array[length])
 		else
 		{
 			search.maximum += 2;
-			ft_putstr("\rNo solutions found, increasing maximum depth to ");
-			ft_putnbr(search.maximum);
+			search.minimum_check_depth += 2;
+//			ft_putstr("\rNo solutions found, increasing maximum depth to ");
+//			ft_putnbr(search.maximum);
 		}
 	}
 	print_operators(search.solution, search.solution_length);

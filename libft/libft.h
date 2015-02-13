@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/12 17:28:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/13 16:47:08 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,10 @@ size_t				ft_arrlen(char **array);
 int					ft_foreach_p(void *array, size_t length, size_t width
 								, int (*check_this)(void *this));
 int					ft_foreach_char_p(char *string, int (*check_char)(int));
-void				ft_expand_array(size_t bytes_before, size_t bytes_after
+void				ft_array_expand(size_t bytes_before, size_t bytes_after
 										, void **data);
 void				ft_quicksort(int length, int *array);
+void				ft_array_reverse(size_t length, int *array);
 
 /*
 ** other
