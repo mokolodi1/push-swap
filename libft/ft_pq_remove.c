@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 17:08:25 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/12 18:05:45 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/15 00:10:14 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,23 @@ void				*ft_pq_remove(t_priority_queue *priority_queue)
 	if (priority_queue->element_count - 1 < priority_queue->data_count / 4)
 		ft_pq_resize_array(priority_queue);
 	data = priority_queue->data;
-	to_return = data[0];
-	data[0] = data[priority_queue->element_count - 1];
 	current = 1;
-	while (current < priority_queue->element_count)
+	to_return = data[current];
+	data[current] = data[priority_queue->element_count];
+	while (current < priority_queue->element_count / 2)
 	{
 		next = current * 2;
-		if (priority_queue->compare(data[next - 1], data[next]) > 0)
+		if (priority_queue->compare(data[next], data[next + 1]) < 0)
 			next++;
-		ft_ptrswp(data[current - 1], data[next - 1]);
+		if (priority_queue->compare(data[current], data[next]) < 0)
+			ft_ptrswp(data[current], data[next]);
+		else
+			break ;
 		current = next;
 	}
+	if (current * 2 + 1  == priority_queue->element_count
+		&& priority_queue->compare(data[current], data[current * 2]) < 0)
+		ft_ptrswp(data[current], data[current * 2]);
 	priority_queue->element_count--;
 	return (to_return);
 }

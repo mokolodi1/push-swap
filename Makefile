@@ -6,25 +6,21 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/11 11:14:34 by tfleming         ###   ########.fr        #
+#    Updated: 2015/02/15 00:39:33 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =				push_swap
 
 CC =				gcc
-FLAGS =				-Wall -Werror -Wextra -O3
+FLAGS =				-Wall -Werror -Wextra -g
 
 LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h
 
 COMPILED =			main.o \
-					push_swap.o \
-					print_operators.o \
-					calculate_operators.o \
-					try_swap.o \
-					try_push.o \
-					try_rotates.o \
+					handle_push_swap.o \
+					print_operators.o
 
 all: $(NAME)
 

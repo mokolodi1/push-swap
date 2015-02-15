@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/13 16:47:08 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/15 00:37:46 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,8 @@ void				ft_list_sort(t_list **first, int (*compare)(void*, void*));
 /*
 ** t_priority_queue
 ** http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html
-** bigger is better
+** sorting: bigger is better
+** data array starts at 1 (data[0] is always NULL)
 */
 
 typedef struct	s_priority_queue
@@ -227,8 +228,6 @@ t_priority_queue	*ft_pq_create_new(int (*compare)(void*, void*));
 void				ft_pq_add(t_priority_queue *priority_queue, void *element);
 void				*ft_pq_remove(t_priority_queue *priority_queue);
 void				ft_pq_resize_array(t_priority_queue *priority_queue);
-void				*ft_pq_peek(t_priority_queue *priority_queue); // todo
-
-
+void				*ft_pq_peek(t_priority_queue *priority_queue);
 
 #endif

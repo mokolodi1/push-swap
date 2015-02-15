@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pq_resize_array.c                               :+:      :+:    :+:   */
+/*   handle_push_swap.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/12 17:23:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/14 20:02:34 by tfleming         ###   ########.fr       */
+/*   Created: 2015/02/14 19:22:05 by tfleming          #+#    #+#             */
+/*   Updated: 2015/02/15 01:00:08 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-// change
-
-void				ft_pq_resize_array(t_priority_queue *priority_queue)
+void				handle_push_swap(int length, int *numbers)
 {
-	size_t			old_size;
-	size_t			new_size;
+	t_try			*original;
 
-	old_size = priority_queue->element_count + 1;
-	new_size = priority_queue->element_count * 2 + 1;
-	ft_array_expand(old_size * sizeof(void*), new_size * sizeof(void*)
-					, (void**)&priority_queue->data);
-	priority_queue->data_count = new_size - 1;
+	// make sure we never go back to the original (always improving
+	// from there)
 }

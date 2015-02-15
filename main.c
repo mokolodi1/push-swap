@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/11 11:38:01 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/14 19:21:55 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void			validate_arguments(int length, int numbers[length]
 }
 
 //static void		check for letters/non-non-digits
-
-// also change what a swap is doing
 
 int					main(int argc, char **argv)
 {

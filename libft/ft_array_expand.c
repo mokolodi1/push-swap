@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 16:44:58 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/13 16:44:59 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/02/15 00:34:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void				ft_array_expand(size_t bytes_before, size_t bytes_after
 	void			*new;
 
 	new = malloc(bytes_after);
-	ft_memcmp(new, *data, bytes_before);
-	free(data);
+	ft_memcpy(new, *data, bytes_before);
+	free(*data);
 	*data = new;
 }
