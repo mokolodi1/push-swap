@@ -14,8 +14,13 @@
 
 void				handle_push_swap(int length, int *numbers)
 {
-	t_try			*original;
+	t_search		search;
 
-	// make sure we never go back to the original (always improving
-	// from there)
+	ft_bzero(&search, sizeof(t_search));
+	search->pq = ft_pq_create_new(&compare_tries);
+	search->max_depth = INT_MAX;
+	while (!search->solution)
+		permutate(search);
+	print_operators(search->solution_length, search->solution);
+	ft_putchar('\n');
 }

@@ -22,7 +22,7 @@
 */
 
 # include "libft.h"
-# include <stdio.h> // nope
+# include <limits.h>
 
 typedef enum		e_operator
 {
@@ -34,16 +34,34 @@ typedef enum		e_operator
 
 typedef struct		s_try
 {
-	int				score;
 	int				*first;
 	int				*second;
 	int				first_length;
 	int				second_length;
 	t_operator		*operators;
-	int				depth
+	int				depth;
+	int				score;
 }					t_try;
+
+typedef struct		s_search
+{
+	t_priorityqueue	pq;
+	int				max_depth;
+	t_operators		*solution;
+	int				solution_length;
+	size_t			permutation_count;
+}					t_search;
 
 void				handle_push_swap(int lenght, int *numbers);
 void				print_operators(t_operator *operators, int length);
+int					compare_tries(t_try *first, t_try *second);
+
+/*
+** todo: something to clean up the priorityqueue when we find a
+** shorter solution
+**
+** todo: what to do when there are too many tries on the priority
+** queue (too much memory much?)
+*/
 
 #endif

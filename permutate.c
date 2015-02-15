@@ -12,7 +12,20 @@
 
 #include "push_swap.h"
 
-void				permutate(t_priorityqueue pq)
+void				permutate(t_search *search)
 {
-	
+	t_try			*best;
+
+	best = ft_pq_remove(search->pq);
+	if (is_solved(best))
+		found_solution(best, search);
+	if (best->depth < max_depth)
+	{
+		add_swaps(best, search);
+		add_pushes(best, search);
+		add_rotates(best, search);
+		add_reverse_rotates(best, search);
+	}
+	free_try(best);
+	search->permutation_count++;
 }
