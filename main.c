@@ -85,7 +85,7 @@ int					main(int argc, char **argv)
 		parse_arguments(argc, argv, numbers);
 		set_minimum_maximum(argc, numbers, &minimum, &maximum);
 		validate_arguments(argc, numbers, minimum, maximum);
-		push_swap(argc, numbers);
+		handle_push_swap(argc, numbers);
 	}
 	else
 	{

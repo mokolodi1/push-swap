@@ -33,14 +33,14 @@ void				*ft_pq_remove(t_priority_queue *priority_queue)
 		if (priority_queue->compare(data[next], data[next + 1]) < 0)
 			next++;
 		if (priority_queue->compare(data[current], data[next]) < 0)
-			ft_ptrswp(data[current], data[next]);
+			ft_ptrswp(&data[current], &data[next]);
 		else
 			break ;
 		current = next;
 	}
 	if (current * 2 + 1  == priority_queue->element_count
 		&& priority_queue->compare(data[current], data[current * 2]) < 0)
-		ft_ptrswp(data[current], data[current * 2]);
+		ft_ptrswp(&data[current], &data[current * 2]);
 	priority_queue->element_count--;
 	return (to_return);
 }

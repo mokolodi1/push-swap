@@ -12,8 +12,36 @@
 
 #include "push_swap.h"
 
+/*
+** compare the array indexes with the contents
+*/
+
+static void			penalize_depth(t_try *try, int multiplier)
+{
+	try->score += try->depth * multiplier;
+}
+
+static void			penalize_out_of_place(t_try *try)
+{
+	int				i;
+
+	i = try->second_length - 1;
+	while (i >= 0)
+	{
+		try->score += i + try->second[i] + 1;
+		i--;
+	}
+	i = 0;
+	while (i < try->first_length)
+	{
+		try->score += ft_abs((try->first[i] - try->second_length) - i);
+		i++;
+	}
+}
+
 void				set_score(t_try *try)
 {
-	(void)try;
-	// set try->score
+	try->score = 0;
+	penalize_depth(try, 2);
+	penalize_out_of_place(try);
 }

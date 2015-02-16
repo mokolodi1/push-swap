@@ -19,8 +19,16 @@ LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h
 
 COMPILED =			main.o \
-					handle_push_swap.o \
-					print_operators.o
+				handle_push_swap.o \
+				permutate.o \
+				found_solution.o \
+				add_swaps.o \
+				add_pushes.o \
+				compare_tries.o \
+				free_try.o \
+				set_score.o \
+				print_operators.o \
+				print_try.o
 
 all: $(NAME)
 

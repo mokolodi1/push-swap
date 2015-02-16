@@ -39,14 +39,14 @@ static t_try		*create_second_swapped(t_try *old)
 	return (new);
 }
 
-static t_try		create_both_swapped(t_try *old)
+static t_try		*create_both_swapped(t_try *old)
 {
 	t_try			*new;
 
 	new = create_general_swapped(old);
 	ft_intswp(new->first, new->first + 1);
 	ft_intswp(new->second, new->second + 1);
-	new->operators[new->depth - 1] = SWAP_B;
+	new->operators[new->depth - 1] = SWAP_S;
 	set_score(new);
 	return (new);
 }
@@ -55,14 +55,14 @@ void				add_swaps(t_try *old, t_search *search)
 {
 	t_operator		last_operator;
 
-	last_operator = old->depth ? old->operators[old->depth - 1] : 0;
-	if (old->first_length > 2
-		&& (last_operator >= SWAP_S || !last_operator))
-		ft_pq_add(search->pq, create_first_swapped(old));
-	if (old->second_length > 2
-		&& (last_operator >= SWAP_S || !last_operator))
-		ft_pq_add(search->pq, create_second_swapped(old));
-	if (old->first_length > 2 && old->second_length > 2
-		&& (last_operator != SWAP_S || !last_operator))
-		ft_pq_add(search->pq, create_both_swapped(old));
+	last_operator = old->depth ? old->operators[old->depth - 1] : NO_OPERATOR;
+	if (last_operator > SWAP_S || last_operator == NO_OPERATOR)
+	{
+		if (old->first_length > 1)
+			ft_pq_add(search->pq, create_first_swapped(old));
+		if (old->second_length > 1)
+			ft_pq_add(search->pq, create_second_swapped(old));
+		if (old->first_length > 1 && old->second_length > 1)
+			ft_pq_add(search->pq, create_both_swapped(old));
+	}
 }
