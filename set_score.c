@@ -44,4 +44,9 @@ void				set_score(t_try *try)
 	try->score = 0;
 	penalize_depth(try, 2);
 	penalize_out_of_place(try);
+	if (try->score < -100 || try->score > 100)
+	{
+		printf("wat\t");
+		print_try(try);
+	}
 }

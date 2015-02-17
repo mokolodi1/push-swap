@@ -97,16 +97,20 @@ void				handle_push_swap(int length, int *numbers)
 	convert_to_indexes(length, &numbers);
 	ft_pq_add(search.pq, make_first_try(length, numbers));
 
-	while (!search.solution)
+	//while (!search.solution)
+	while (search.pq->element_count)
 	{
 		permutate(&search);
 		//print_debugging(&search);
-		if (search.permutation_count % 10000 == 0)
-			printf("search->permutation_count = %zu\tsearch->pq->element_count = %zu\n"
-				   , search.permutation_count, search.pq->element_count);
+		/* if (search.permutation_count % 100 == 0) */
+		/* 	printf("search->permutation_count = %zu\tsearch->pq->element_count = %zu\n" */
+		/* 		   , search.permutation_count, search.pq->element_count); */
 	}
 	printf("\ndone\n");
+	printf("\nsearch->permutation_count = %zu\n", search.permutation_count);
+	printf("search->pq->element_count = %zu\n", search.pq->element_count);
 	print_operators(search.solution_length, search.solution);
+	
 	//ft_putchar('\n');
 	printf("\n");
 }

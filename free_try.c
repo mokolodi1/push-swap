@@ -6,4 +6,5 @@ void				free_try(t_try *try)
 	free(try->second);
 	free(try->operators);
 	free(try);
+	(void)try;
 }

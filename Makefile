@@ -24,6 +24,8 @@ COMPILED =			main.o \
 				found_solution.o \
 				add_swaps.o \
 				add_pushes.o \
+				add_rotates.o \
+				add_reverse_rotates.o \
 				compare_tries.o \
 				free_try.o \
 				set_score.o \

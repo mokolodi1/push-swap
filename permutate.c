@@ -25,21 +25,16 @@ void				permutate(t_search *search)
 	t_try			*best;
 
 	best = ft_pq_remove(search->pq);
-	if (is_solved(best, search))
+	if ((!search->solution || best->depth < search->solution_length)
+		&& is_solved(best, search))
 		found_solution(best, search);
-	if (!search->solution || best->depth < search->solution_length - 1)
+	else if (!search->solution || best->depth < search->solution_length - 1)
 	{
 		add_swaps(best, search);
 		add_pushes(best, search);
-		/* add_rotates(best, search); */
-		/* add_reverse_rotates(best, search); */
+		add_rotates(best, search);
+		add_reverse_rotates(best, search);
 	}
 	free_try(best);
 	search->permutation_count++;
-	
-	if (!search->pq->element_count) // debug
-	{
-		ft_putstr("No solutions found :(\n");
-		exit (1);
-	}
 }

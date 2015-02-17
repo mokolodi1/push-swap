@@ -65,6 +65,8 @@ void					permutate(t_search *search);
 void					found_solution(t_try *try, t_search *search);
 void					add_swaps(t_try *old, t_search *search);
 void					add_pushes(t_try *old, t_search *search);
+void					add_rotates(t_try *old, t_search *search);
+void					add_reverse_rotates(t_try *old, t_search *search);
 int						compare_tries(t_try *first, t_try *second);
 void					free_try(t_try *try);
 void					set_score(t_try *try);

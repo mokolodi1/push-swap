@@ -13,7 +13,7 @@ static void			clean_up_priority_queue(t_search *search)
 			count++;
 		i++;
 	}
-	printf("could clean up %d entries in pq (greater operations length)\n", count);
+	printf("(cleanup = %d)", count);
 }
 
 void				found_solution(t_try *try, t_search *search)
@@ -24,5 +24,9 @@ void				found_solution(t_try *try, t_search *search)
 	ft_memcpy(search->solution, try->operators
 					, try->depth * sizeof(t_operator));
 	search->solution_length = try->depth;
+	printf("found solution: ");
+	print_operators(search->solution_length, search->solution);
+	printf(" permutations: %zu ", search->permutation_count);
 	clean_up_priority_queue(search);
+	printf("\n");
 }
