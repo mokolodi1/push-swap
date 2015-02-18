@@ -74,7 +74,7 @@ def perform_operation(first, second, operation):
     elif (operation == 'rrb'):
         second = reverse_rotate(second)
     elif (operation == 'rrr'):
-        first = rotate(first)
+        first = reverse_rotate(first)
         second = reverse_rotate(second)
     else:
         print('invalid operation: |' + str(operation) + '|')
@@ -96,11 +96,15 @@ def is_correct(permutation, output):
     if (len(second)):
         print('length of second after operations is not 0')
         exit(1)
+    goodness = True
     for i in range(len(first) - 1):
         if (first[i] > first[i + 1]):
-            print('not sorted at end of operations for input: ' + str(list(permutation)))
-            exit(1)
-    print('good: ' + str(list(permutation)))
+            print('not sorted at end of operations for input: ' + str(list(permutation)) + ' and output ' + str(output))
+            goodness = False
+            break
+    if (goodness):
+        print('good: ' + str(list(permutation)))
+    return (output.count(" "))
 
 def convert_permutation_to_arguments(array):
     return re.sub('[(),]', '', str(array))
