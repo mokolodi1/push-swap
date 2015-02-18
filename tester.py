@@ -1,5 +1,5 @@
 # Put this wherever you can call ./push_swap
-# call with "puthon tester.py"
+# call with "python tester.py"
 
 # for capturing output from ./push_swap
 import shlex
