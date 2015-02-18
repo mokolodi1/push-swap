@@ -25,6 +25,8 @@
 # include <limits.h>
 # include <stdio.h> // nope
 
+# define DEPTH_MULTIPLIER	2
+
 typedef enum			e_operator
 {
 	NO_OPERATOR
@@ -34,6 +36,10 @@ typedef enum			e_operator
 	, REVERSE_ROTATE_A, REVERSE_ROTATE_B, REVERSE_ROTATE_A_B
 }						t_operator;
 
+/*
+** first/second[*_length] = number of other uses (other than original)
+*/
+
 typedef struct			s_try
 {
 	int					*first;
@@ -42,6 +48,7 @@ typedef struct			s_try
 	int					second_length;
 	t_operator			*operators;
 	int					depth;
+	int					sortedness;
 	int					score;
 }						t_try;
 
@@ -63,11 +70,16 @@ typedef struct			s_search
 void					handle_push_swap(int lenght, int *numbers);
 void					permutate(t_search *search);
 void					found_solution(t_try *try, t_search *search);
-void					add_swaps(t_try *old, t_search *search);
-void					add_pushes(t_try *old, t_search *search);
-void					add_rotates(t_try *old, t_search *search);
-void					add_reverse_rotates(t_try *old, t_search *search);
+void					add_swaps(t_try *old, t_search *search
+												, t_operator last_operator);
+void					add_pushes(t_try *old, t_search *search
+												, t_operator last_operator);
+void					add_rotates(t_try *old, t_search *search
+												, t_operator last_operator);
+void					add_reverse_rotates(t_try *old, t_search *search
+												, t_operator last_operator);
 int						compare_tries(t_try *first, t_try *second);
+t_try					*create_general_try(t_try *old);
 void					free_try(t_try *try);
 void					set_score(t_try *try);
 void					print_operators(int length, t_operator *operators);

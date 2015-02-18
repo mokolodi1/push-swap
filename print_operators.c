@@ -15,42 +15,40 @@
 static void			print_op(t_operator operator)
 {
 	if (operator == SWAP_A)
-		fprintf(stdout, " sa");
+		ft_putstr("sa");
 	else if (operator == SWAP_B)
-		fprintf(stdout, " sb");
+		ft_putstr("sb");
 	else if (operator == SWAP_S)
-		fprintf(stdout, " ss");
+		ft_putstr("ss");
 	else if (operator == PUSH_A)
-		fprintf(stdout, " pa");
+		ft_putstr("pa");
 	else if (operator == PUSH_B)
-		fprintf(stdout, " pb");
+		ft_putstr("pb");
 	else if (operator == ROTATE_A)
-		fprintf(stdout, " ra");
+		ft_putstr("ra");
 	else if (operator == ROTATE_B)
-		fprintf(stdout, " rb");
+		ft_putstr("rb");
 	else if (operator == ROTATE_A_B)
-		fprintf(stdout, " rr");
+		ft_putstr("rr");
 	else if (operator == REVERSE_ROTATE_A)
-		fprintf(stdout, "rra");
+		ft_putstr("rra");
 	else if (operator == REVERSE_ROTATE_B)
-		fprintf(stdout, "rrb");
+		ft_putstr("rrb");
 	else if (operator == REVERSE_ROTATE_A_B)
-		fprintf(stdout, "rrr");
+		ft_putstr("rrr");
 	else
-		fprintf(stdout, "nope");
+		ft_putstr("nope");
 }
 
 void				print_operators(int length, t_operator *operators)
 {
 	int				i;
 
-	//fprintf(stdout, "\r\033[2K");
 	i = 0;
 	while (i < length - 1)
 	{
 		print_op(operators[i]);
-		//ft_putchar(' ');
-		fprintf(stdout, " ");
+		ft_putchar(' ');
 		i++;
 	}
 	if (length > 0)

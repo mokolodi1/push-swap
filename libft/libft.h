@@ -117,6 +117,7 @@ void				ft_putnbr_fd(int number, int file_descriptor);
 void				ft_putnbr_large_fd(intmax_t number, int file_descriptor);
 void				ft_putulonglong(unsigned long long number);
 void				ft_putstrarr(char const **source, size_t length);
+void				ft_put_clear_line(void);
 
 /*
 ** array functions

@@ -14,5 +14,7 @@
 
 void				*ft_pq_peek(t_priority_queue *priority_queue)
 {
-	return (priority_queue->data[1]);
+	if (priority_queue->element_count)
+		return (priority_queue->data[1]);
+	return (NULL);
 }

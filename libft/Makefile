@@ -13,7 +13,7 @@
 NAME =			libft.a
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -g
+FLAGS =			-Wall -Werror -Wextra -O3
 INCLUDES =		"includes"
 
 COMPILED =		ft_islower.o \
@@ -98,6 +98,7 @@ COMPILED =		ft_islower.o \
 				ft_putnbr_fd.o \
 				ft_putnbr_large_fd.o \
 				ft_putstrarr.o \
+				ft_put_clear_line.o \
 				ft_abs.o \
 				ft_abs_large.o \
 				ft_arrlen.o \
