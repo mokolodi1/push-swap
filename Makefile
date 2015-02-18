@@ -30,8 +30,7 @@ COMPILED =			main.o \
 				create_general_try.o \
 				free_try.o \
 				set_score.o \
-				print_operators.o \
-				print_try.o
+				print_operators.o
 
 all: $(NAME)
 

@@ -87,8 +87,6 @@ void					set_score(t_try *try);
 void					print_operators(int length, t_operator *operators);
 
 
-void					print_try(t_try *try);
-
 /*
 ** todo: something to clean up the priorityqueue when we find a
 ** shorter solution
