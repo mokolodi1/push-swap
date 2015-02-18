@@ -98,7 +98,7 @@ def is_correct(permutation, output):
         exit(1)
     for i in range(len(first) - 1):
         if (first[i] > first[i + 1]):
-            print('not sorted at end of operations')
+            print('not sorted at end of operations for input: ' + str(str(list(permutation))))
             exit(1)
     print('good: ' + str(list(permutation)))
 
