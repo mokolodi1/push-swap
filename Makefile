@@ -13,7 +13,7 @@
 NAME =				push_swap
 
 CC =				gcc
-FLAGS =				-Wall -Werror -Wextra -O3
+FLAGS =				-Wall -Werror -Wextra -g -O0
 
 LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h

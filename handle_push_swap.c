@@ -31,13 +31,15 @@ static t_try		*make_first_try(int length, int *numbers)
 	return (new);
 }
 
-static void			setup_search(t_search *search, int length)
+static void			setup_search(t_search *search, int length
+									, int refining_answer)
 {
 	int				i;
 
 	ft_bzero(search, sizeof(t_search));
 	search->pq = ft_pq_create_new((int (*)(void*, void*))&compare_tries);
 	search->ascending_numbers = malloc(length * sizeof(int));
+	search->refining_answer = refining_answer;
 	i = 0;
 	while (i < length)
 	{
@@ -86,26 +88,26 @@ void				print_debugging(t_search *search)
 	}
 }
 
-void				handle_push_swap(int length, int *numbers)
+void				handle_push_swap(int length, int *numbers
+										, int refining_answer)
 {
 	t_search		search;
 	int				max_sortedness;
 	t_try			*peek;
 
-	setup_search(&search, length);
+	setup_search(&search, length, refining_answer);
 	convert_to_indexes(length, &numbers);
 	ft_pq_add(search.pq, make_first_try(length, numbers));
 	max_sortedness = ((t_try*)ft_pq_peek(search.pq))->sortedness;
 	if (max_sortedness < 0)
 		max_sortedness = 0;
-	ft_putstr("Searching...");
-	//while (search.pq->element_count)
+	if (refining_answer)
+		ft_putstr("Searching...");
 	while ((peek = ((t_try*)ft_pq_peek(search.pq)))
 		   && (peek->sortedness <= max_sortedness
 		   	   || !search.solution))
-	{
 		permutate(&search);
-		//printf("sortedness = %d\n", peek->sortedness);
-	}
+	if (!refining_answer)
+		print_operators(search.solution_length, search.solution);
 	ft_putchar('\n');
 }

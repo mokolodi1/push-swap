@@ -13,7 +13,7 @@
 NAME =			libft.a
 
 CC =			gcc
-FLAGS =			-Wall -Werror -Wextra -O3
+FLAGS =			-Wall -Werror -Wextra -g -O0
 INCLUDES =		"includes"
 
 COMPILED =		ft_islower.o \

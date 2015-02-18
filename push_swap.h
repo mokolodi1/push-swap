@@ -65,9 +65,11 @@ typedef struct			s_search
 	int					*ascending_numbers;
 	t_operator			*solution;
 	int					solution_length;
+	int					refining_answer;
 }						t_search;
 
-void					handle_push_swap(int lenght, int *numbers);
+void					handle_push_swap(int lenght, int *numbers
+											, int refining_answer);
 void					permutate(t_search *search);
 void					found_solution(t_try *try, t_search *search);
 void					add_swaps(t_try *old, t_search *search

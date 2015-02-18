@@ -76,21 +76,25 @@ int					main(int argc, char **argv)
 {
 	int				minimum;
 	int				maximum;
-	int				numbers[argc - 1];
+	int				*numbers;
+	int				refining_answer;
 
 	argc--;
 	argv++;
 	if (argc > 0)
 	{
+		if ((refining_answer = ft_strequ("-r", argv[0])) && argc > 1)
+		{
+			argc--;
+			argv++;
+		}
+		numbers = malloc(argc * sizeof(int));
 		parse_arguments(argc, argv, numbers);
 		set_minimum_maximum(argc, numbers, &minimum, &maximum);
 		validate_arguments(argc, numbers, minimum, maximum);
-		handle_push_swap(argc, numbers);
+		handle_push_swap(argc, numbers, refining_answer);
 	}
 	else
-	{
 		ft_putendl("Error");
-		exit(1);
-	}
 	return (0);
 }
