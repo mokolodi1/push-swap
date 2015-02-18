@@ -76,18 +76,6 @@ static void			convert_to_indexes(int length, int **numbers)
 	ft_ptrswp((void**)&wanted, (void**)numbers);
 }
 
-void				print_debugging(t_search *search)
-{
-	printf("\nsearch->permutation_count = %zu\n", search->permutation_count);
-	printf("search->pq->element_count = %zu\n", search->pq->element_count);
-	printf("search->solution = %p\n", search->solution);
-	for (int i = 1; i <= (int)search->pq->element_count; i++)
-	{
-		printf("search->pq->data[%d] = ", i);
-		print_try((t_try*)(search->pq->data[i]));
-	}
-}
-
 void				handle_push_swap(int length, int *numbers
 										, int refining_answer)
 {
