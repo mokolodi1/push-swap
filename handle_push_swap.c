@@ -91,9 +91,7 @@ void				handle_push_swap(int length, int *numbers
 		max_sortedness = 0;
 	if (refining_answer)
 		ft_putstr("Searching...");
-	while ((peek = ((t_try*)ft_pq_peek(search.pq)))
-		   && (peek->sortedness <= max_sortedness
-		   	   || !search.solution))
+	while ((peek = ((t_try*)ft_pq_peek(search.pq))))
 		permutate(&search);
 	if (!refining_answer)
 		print_operators(search.solution_length, search.solution);
