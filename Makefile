@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/02/15 00:39:33 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/07 14:21:24 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,7 +19,7 @@ LIBFT =				"libft/"
 HEADER =			$(FT_SRC_DIR)libft.h
 
 COMPILED =			main.o \
-				handle_push_swap.o \
+				path_finding_push_swap.o \
 				permutate.o \
 				found_solution.o \
 				add_swaps.o \
@@ -30,6 +30,7 @@ COMPILED =			main.o \
 				create_general_try.o \
 				free_try.o \
 				set_score.o \
+				quicksort_push_swap.o \
 				print_operators.o
 
 all: $(NAME)

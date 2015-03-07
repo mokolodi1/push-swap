@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_push_swap.c                                 :+:      :+:    :+:   */
+/*   path_finding_push_swap.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 19:22:05 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/15 01:00:08 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 12:44:58 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void			convert_to_indexes(int length, int **numbers)
 	ft_ptrswp((void**)&wanted, (void**)numbers);
 }
 
-void				handle_push_swap(int length, int *numbers
+void				path_finding_push_swap(int length, int *numbers
 										, int refining_answer)
 {
 	t_search		search;

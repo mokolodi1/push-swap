@@ -6,7 +6,8 @@ static t_try		*create_rotated_first(t_try *old)
 
 	new = create_general_try(old);
 	new->first = malloc((new->first_length + 1) * sizeof(int));
-	ft_memcpy(new->first, old->first + 1, (old->first_length - 1) * sizeof(int));
+	ft_memcpy(new->first, old->first + 1
+				, (old->first_length - 1) * sizeof(int));
 	new->first[new->first_length - 1] = old->first[0];
 	new->first[new->first_length] = 0;
 	new->second = old->second;

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/15 00:54:19 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/15 00:55:24 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 12:47:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void				sortedness(t_try *try, int sorted, int not_sorted)
 void				set_score(t_try *try)
 {
 	try->score = 0;
-	try->score += try->depth * DEPTH_MULTIPLIER;
+	try->score += try->depth * 2;
 	try->score += try->second_length;
 	try->sortedness = 0;
 	sortedness(try, -1, 1);
