@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 13:20:57 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 18:45:22 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,8 @@ static void			validate_arguments(int length, int numbers[length]
 static void			handle_push_swap(int length, int *numbers
 										, int refining_answer)
 {
-	int				minimum;
-	int				maximum;
-
 	if (length < PATH_FINDING_MAX_LENGTH)
-	{
-		set_minimum_maximum(argc, numbers, &minimum, &maximum);
-		validate_arguments(argc, numbers, minimum, maximum);
 		path_finding_push_swap(length, numbers, refining_answer);
-	}
 	else
 		quicksort_push_swap(length, numbers);
 }
@@ -90,6 +83,8 @@ int					main(int argc, char **argv)
 {
 	int				*numbers;
 	int				refining_answer;
+	int				minimum;
+	int				maximum;
 
 	argc--;
 	argv++;
@@ -102,6 +97,8 @@ int					main(int argc, char **argv)
 		}
 		numbers = malloc(argc * sizeof(int));
 		parse_arguments(argc, argv, numbers);
+		set_minimum_maximum(argc, numbers, &minimum, &maximum);
+		validate_arguments(argc, numbers, minimum, maximum);
 		handle_push_swap(argc, numbers, refining_answer);
 	}
 	else

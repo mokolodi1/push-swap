@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 14:11:02 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 14:12:57 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 18:40:19 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void			add_to_solution(t_solution *solution, t_operator operator)
 	{
 		ft_array_expand(solution->length * sizeof(t_operator)
 						, solution->length * 2 * sizeof(t_operator)
-						, &solution->operators);
-		solution->malloc_lenght *= 2;
+						, (void**)&solution->operators);
+		solution->malloc_length *= 2;
 	}
 	solution->operators[solution->length] = operator;
 	solution->length++;

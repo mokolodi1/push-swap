@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:25:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/13 16:34:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 18:30:59 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void				print_operators(int length, t_operator *operators)
 {
 	int				i;
 
+	clean_solution(length, &operators);
 	i = 0;
 	while (i < length - 1)
 	{

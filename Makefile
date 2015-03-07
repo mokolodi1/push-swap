@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/07 14:21:24 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/07 18:40:34 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -31,6 +31,9 @@ COMPILED =			main.o \
 				free_try.o \
 				set_score.o \
 				quicksort_push_swap.o \
+				partition_to_cutoff.o \
+				add_to_solution.o \
+				cleanup_solution.o \
 				print_operators.o
 
 all: $(NAME)

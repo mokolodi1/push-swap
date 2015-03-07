@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 14:21:30 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 18:31:06 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,13 @@ void					print_operators(int length, t_operator *operators);
 */
 
 # define STARTING_SOLUTION_LENGTH	10
-# define HARDCODED_CUTOFF			3;
+# define PARTITION_CUTOFF			3
 
 typedef struct			s_entry
 {
 	int					number;
-	t_entry				*next;
+	struct s_entry		*last;
+	struct s_entry		*next;
 }						t_entry;
 
 typedef struct			s_solution
@@ -115,16 +116,17 @@ typedef struct			s_solution
 typedef struct			s_stack
 {
 	t_entry				*entries;
-	t_entry				*last;
 	t_solution			*solution;
 	t_operator			push_to_this_operator;
+	t_operator			rotate_this_operator;
 }						t_stack;
 
 void					quicksort_push_swap(int length, int *numbers);
 void					partition_to_cutoff(t_stack *first, t_stack *second
 											, int first_length
-											, int second_length)
+											, int second_length);
 void					add_to_solution(t_solution *solution
 											, t_operator operator);
+void					clean_solution(int length, t_operator **operators);
 
 #endif

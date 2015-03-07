@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 14:09:59 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 14:30:40 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/07 15:59:37 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,26 @@ static int			get_pivot(t_entry *entries)
 
 static void			push(t_stack *destination, t_stack *source)
 {
-	// todo: this
+	t_entry			*moving;
+
+	moving = source->entries;
+	moving->last->next = moving->next;
+	moving->next->last = moving->last;
+	source->entries = moving->next;
+	moving->next = destination->entries;
+	moving->last = destination->entries->last;
+	moving->next->last = moving;
+	moving->last->next = moving;
+	destination->entries = moving;
+}
+
+static void			cutoff_reached(t_stack *stack, int length)
+{
+	if (length == 1)
+	{
+		stack->entries = stack->entries->next;
+		add_to_solution(stack->solution, stack->rotate_this_operator);
+	}
 }
 
 void				partition_to_cutoff(t_stack *destination
@@ -32,11 +51,12 @@ void				partition_to_cutoff(t_stack *destination
 	t_entry			*entry;
 	int				pushed;
 
-	if (source_length <= HARDCODED_CUTOFF)
-		cutoff_reached(entry, destination_length, solution);
+	entry = source->entries;
+	if (source_length <= PARTITION_CUTOFF)
+		cutoff_reached(source, source_length);
 	else
 	{
-		entry = source->entries;
+		
 		pivot = get_pivot(entry);
 		pushed = 0;
 		while (entry)
