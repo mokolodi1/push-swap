@@ -58,7 +58,7 @@ static void			create_new_operators(int length, t_operator **operators
 }
 
 // todo: combine rotates
-void				clean_solution(int length, t_operator **operators)
+void				cleanup_solution(int length, t_operator **operators)
 {
 	int				i;
 	int				should_delete[length];

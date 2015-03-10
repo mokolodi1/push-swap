@@ -9,6 +9,8 @@ from subprocess import Popen, PIPE
 import itertools
 import re # regular expressions
 
+from random import shuffle
+
 def get_exitcode_stdout_stderr(cmd):
     """
     Execute the external command and get its exitcode, stdout and stderr.
@@ -103,7 +105,10 @@ def is_correct(permutation, output):
             goodness = False
             break
     if (goodness):
-        print('good: ' + str(list(permutation)))
+        print('good :: length = ' + str(len(output)))# + '\tinput = ' + str(list(permutation)))
+    else:
+        print("not good!")
+        exit(1)
     return (output.count(" "))
 
 def convert_permutation_to_arguments(array):
@@ -117,7 +122,22 @@ def tester_num_arguments(num_args):
         cmd = './push_swap ' + convert_permutation_to_arguments(permutation);
         exitcode, out, err = get_exitcode_stdout_stderr(cmd)
         is_correct(permutation, out);
-        
+
+def test_thingy(thingy):
+    cmd = './push_swap ' + convert_permutation_to_arguments(thingy)[1:-1]
+    exitcode, out, err = get_exitcode_stdout_stderr(cmd)
+    is_correct(thingy, out);
+
+def test_randoms(num_args, number_to_test):
+    for i in range(number_to_test):
+        thingy = [i for i in range(num_args)]
+        shuffle(thingy)
+        test_thingy(thingy)
+    
 # 'main'
-for i in range(1, 7):
-    tester_num_arguments(i);
+#for i in range(10, 12):
+#    tester_num_arguments(i);
+
+#test_thingy([3, 4, 6, 1, 5, 9, 0, 2, 7, 8, 11, 12, 13, 19, 18, 17, 16])
+
+test_randoms(10000, 20)

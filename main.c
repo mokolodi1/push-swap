@@ -70,19 +70,22 @@ static void			validate_arguments(int length, int numbers[length]
 	}
 }
 
-static void			handle_push_swap(int length, int *numbers
-										, int refining_answer)
+static void			handle_push_swap(int length, int *numbers)
 {
-	if (length < PATH_FINDING_MAX_LENGTH)
-		path_finding_push_swap(length, numbers, refining_answer);
+	t_operator		*solution;
+	int				solution_length;
+
+	if (length <= PATH_FINDING_MAX_LENGTH)
+		path_finding_push_swap(length, numbers, &solution, &solution_length);
 	else
-		quicksort_push_swap(length, numbers);
+		quicksort_push_swap(length, numbers, &solution, &solution_length);
+	print_operators(solution_length, solution);
+	ft_putchar('\n');
 }
 
 int					main(int argc, char **argv)
 {
 	int				*numbers;
-	int				refining_answer;
 	int				minimum;
 	int				maximum;
 
@@ -90,16 +93,11 @@ int					main(int argc, char **argv)
 	argv++;
 	if (argc > 0)
 	{
-		if ((refining_answer = ft_strequ("-r", argv[0])) && argc > 1)
-		{
-			argc--;
-			argv++;
-		}
 		numbers = malloc(argc * sizeof(int));
 		parse_arguments(argc, argv, numbers);
 		set_minimum_maximum(argc, numbers, &minimum, &maximum);
 		validate_arguments(argc, numbers, minimum, maximum);
-		handle_push_swap(argc, numbers, refining_answer);
+		handle_push_swap(argc, numbers);
 	}
 	else
 		ft_putendl("Error");

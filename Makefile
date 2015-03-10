@@ -32,8 +32,12 @@ COMPILED =			main.o \
 				set_score.o \
 				quicksort_push_swap.o \
 				partition_to_cutoff.o \
+				stack_operations.o \
+				get_pivot.o \
+				cutoff_reached.o \
 				add_to_solution.o \
 				cleanup_solution.o \
+				print_entries.o \
 				print_operators.o
 
 all: $(NAME)

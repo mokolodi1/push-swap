@@ -12,72 +12,117 @@
 
 #include "push_swap.h"
 
-static void			convert_to_entries(t_entry *entries
-										, int length, int *numbers)
+static void			setup_entries(t_entry *entries, int length, int *numbers)
 {
 	int				i;
 
-	entries = malloc(length * sizeof(t_entry));
 	i = 0;
 	while (i < length)
 	{
 		entries[i].number = numbers[i];
-		entries[i].last = entries + i - 1;
+		entries[i].previous = entries + i - 1;
 		entries[i].next = entries + i + 1;
 		i++;
 	}
-	entries[0].last = entries + length - 1;
+	entries[0].previous = entries + length - 1;
 	entries[length - 1].next = entries;
 }
 
-static void			merge(t_stack *first_stack, t_stack *second_stack)
+static int			stack_length(t_stack *stack)
 {
-	t_entry			*first;
-	t_entry			*second;
-
-	first = first_stack->entries;
-	second = second_stack->entries;
-	while (1)
+	t_entry			*current;
+	int				count;
+	
+	current = stack->first;
+	if (!current)
+		return (0);
+	if (current == current->previous)
+		return (1);
+	count = 1;
+	while (current != stack->first->previous)
 	{
-		if (second == second_stack->entries->last
-			|| (first != first_stack->entries->last
-				&& first->number < second->number))
-			first = first->next;
-		else
+		current = current->next;
+		count++;
+	}
+	return (count);
+}
+
+static void			merge(t_stack *first_stack, t_stack *second_stack
+												, int length)
+{
+	int				first_length;
+	int				second_length;
+	int				first_counter;
+	int				second_counter;
+
+	/* ft_putstr("merge:"); */
+	/* print_debug(second_stack, first_stack); */
+	first_length = stack_length(first_stack);
+	second_length = length - first_length;
+	/* ft_putstr("first_length = "); */
+	/* ft_putnbr(first_length); */
+	/* ft_putstr("\nsecond_length = "); */
+	/* ft_putnbr(second_length); */
+	/* ft_putstr("\n"); */
+	first_counter = 0;
+	second_counter = 0;
+	while (first_counter < first_length || second_counter < second_length)
+	{
+		/* ft_putstr("\n\nfirst_counter = "); */
+		/* ft_putnbr(first_counter); */
+		/* ft_putstr("\nsecond_counter = "); */
+		/* ft_putnbr(second_counter); */
+		/* ft_putstr("\n"); */
+		if (first_counter >= first_length
+				|| (second_counter < second_length
+					&& first_stack->first->number > second_stack->first->number))
 		{
-			add_to_solution(first_stack->solution, PUSH_A);
-			second = second->next;
+			push(first_stack, second_stack);
+			/* ft_putstr("after push\n"); */
+			/* print_debug(second_stack, first_stack); */
+			second_counter++;
 		}
-		add_to_solution(first_stack->solution, ROTATE_A);
-		if (first == first_stack->entries->last
-			&& second == second_stack->entries->last)
-			break ;
+		else
+			first_counter++;
+		rotate(first_stack);
+		/* ft_putstr("after rotate\n"); */
+		/* print_debug(second_stack, first_stack); */
 	}
 }
 
-// start here: make it so that the last element on linked lists is
-// null (it won't be circular)
+static void			setup_stacks(t_stack *first_stack, t_stack *second_stack
+								 , t_solution *solution, t_entry *entries)
+{
+	first_stack->first = entries;
+	second_stack->first = NULL;
+	first_stack->solution = solution;
+	second_stack->solution = solution;
+	first_stack->swap_stack = SWAP_A;
+	second_stack->swap_stack = SWAP_B;
+	first_stack->push_to_this_stack = PUSH_A;
+	second_stack->push_to_this_stack = PUSH_B;
+	first_stack->rotate_stack = ROTATE_A;
+	second_stack->rotate_stack = ROTATE_B;
+	first_stack->reverse_rotate_stack = REVERSE_ROTATE_A;
+	second_stack->reverse_rotate_stack = REVERSE_ROTATE_B;
+}
 
-void				quicksort_push_swap(int length, int *numbers)
+void				quicksort_push_swap(int length, int *numbers
+										, t_operator **overall_solution
+										, int *solution_length)
 {
 	t_solution		solution;
-	t_entry			first_entries[length];
-	t_stack			first;
-	t_stack			second;
+	t_entry			entries[length];
+	t_stack			first_stack;
+	t_stack			second_stack;
 
-	solution.malloc_length = STARTING_SOLUTION_LENGTH;
+	solution.malloc_length = 2;
 	solution.length = 0;
-	solution.operators = malloc(solution.length * sizeof(t_operator));
-	convert_to_entries(first_entries, length, numbers);
-	first.entries = first_entries;
-	first.solution = &solution;
-	first.push_to_this_operator = PUSH_A;
-	first.rotate_this_operator = ROTATE_A;
-	second.entries = NULL;
-	second.solution = &solution;
-	first.push_to_this_operator = PUSH_B;
-	second.rotate_this_operator = ROTATE_B;
-	partition_to_cutoff(&first, &second, length, 0);
-	merge(&first, &second);
-	print_operators(solution.length, solution.operators);
+	solution.operators = malloc(solution.malloc_length * sizeof(t_operator));
+	setup_entries(entries, length, numbers);
+	setup_stacks(&first_stack, &second_stack, &solution, entries);
+	partition_to_cutoff(&second_stack, &first_stack, length);
+	merge(&first_stack, &second_stack, length);
+	*overall_solution = solution.operators;
+	*solution_length = solution.length;
 }

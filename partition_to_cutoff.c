@@ -12,85 +12,88 @@
 
 #include "push_swap.h"
 
-static int			get_pivot(t_entry *entries, int length)
+static int			find_need_to_check(t_entry *entries, int length
+									   , int pivot)
 {
-	// todo: optimize to look through all entries and find median
+	// todo: this
+	(void)entries;
 	(void)length;
-	return (entries->number);
+	(void)pivot;
+	return (length);
 }
 
-static void			push(t_stack *destination, t_stack *source)
+void				print_debug(t_stack *destination, t_stack *source) // nope
 {
-	t_entry			*moving;
-
-	moving = source->entries;
-	if (!moving)
-		ft_putstr("trying to push NULL! (partition_to_cutoff)\n"); // nope
-	if (moving->last)
-		moving->last->next = moving->next;
-	if (moving->next)
-		moving->next->last = moving->last;
-	source->entries = moving->next;
-	moving->next = destination->entries;
-	moving->last = (destination->entries ? destination->entries->last : NULL);
-	if (moving->next)
-		moving->next->last = moving;
-	if (moving->last)
-		moving->last->next = moving;
-	destination->entries = moving;
+	ft_putstr("source = ");
+	print_entries(source->first);
+	ft_putstr("\ndestination = ");
+	print_entries(destination->first);
+	ft_putstr("\n\n");
 }
 
-static void			rotate(t_stack *
-
-static void			cutoff_reached(t_stack *stack, int length)
+static int			push_if_necessary(t_stack *destination, t_stack *source
+									  , int source_length)
 {
-	if (length == 1)
+	int				pivot;
+	int				pushed;
+	int				i;
+
+	pivot = get_pivot(source->first, source_length);
+	/* ft_putstr("beginning of push_if_necessary:\nlength = "); */
+	/* ft_putnbr(source_length); */
+	/* ft_putstr("\npivot = "); */
+	/* ft_putnbr(pivot); */
+	/* ft_putstr("\n"); */
+	/* print_debug(destination, source); */
+	source_length = find_need_to_check(source->first, source_length, pivot);
+	pushed = 0;
+	i = 0;
+	while (i < source_length)
 	{
-		add_to_solution(stack->solution, stack->rotate_stack);
 		
+		if (source->first->number < pivot)
+		{
+			push(destination, source);
+			/* ft_putstr("after push:\n"); */
+			/* print_debug(destination, source); */
+			pushed++;
+		}
+		else
+		{
+			rotate(source);
+			/* ft_putstr("after rotate:\n"); */
+			/* print_debug(destination, source); */
+		}
+		i++;
 	}
-	(void)stack;
-	(void)length;
-	ft_putstr("cutoff_reached: code this now\n");
+	return (pushed);
+}
+
+static void			rotate_back_to_start(t_stack *stack, int number)
+{
+	int				i;
+
+	i = 0;
+	while (i < number)
+	{
+		reverse_rotate(stack);
+		i++;
+	}
 }
 
 void				partition_to_cutoff(t_stack *destination
 										, t_stack *source
 										, int source_length)
 {
-	int				pivot;
-	t_entry			*entry;
 	int				pushed;
-	int				i;
 
-	entry = source->entries;
+	//	ft_putstr("partitioning\n");
 	if (source_length <= PARTITION_CUTOFF)
 		cutoff_reached(source, source_length);
 	else
 	{
-		pivot = get_pivot(entry, source_length);
-		pushed = 0;
-		i = 0;
-		// optimization: only loop through until all have been moved
-		while (i < source_length)
-		{
-			if (entry->number < pivot)
-			{
-				push(destination, source);
-				add_to_solution(source->solution
-								, destination->push_to_this_stack);
-				pushed++;
-			}
-			add_to_solution(source->solution, source->rotate_stack);
-			entry = entry->next;
-			i++;
-		}
-		i = 0;
-		while (i < source_length - pushed)
-		{
-			add_to_solution(source->solution, source->reverse_rotate_stack);
-			i++;
-		}
+		pushed = push_if_necessary(destination, source, source_length);
+		rotate_back_to_start(source, source_length - pushed);
 		partition_to_cutoff(source, destination, pushed);
 		partition_to_cutoff(destination, source, source_length - pushed);
 	}

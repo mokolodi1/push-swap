@@ -70,11 +70,11 @@ typedef struct			s_search
 	int					*ascending_numbers;
 	t_operator			*solution;
 	int					solution_length;
-	int					refining_answer;
 }						t_search;
 
 void					path_finding_push_swap(int lenght, int *numbers
-											, int refining_answer);
+												, t_operator **solution
+												, int *solution_length);
 void					permutate(t_search *search);
 void					found_solution(t_try *try, t_search *search);
 void					add_swaps(t_try *old, t_search *search
@@ -96,13 +96,12 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define STARTING_SOLUTION_LENGTH	10
-# define PARTITION_CUTOFF			3
+# define PARTITION_CUTOFF			2
 
 typedef struct			s_entry
 {
 	int					number;
-	struct s_entry		*last;
+	struct s_entry		*previous;
 	struct s_entry		*next;
 }						t_entry;
 
@@ -115,18 +114,37 @@ typedef struct			s_solution
 
 typedef struct			s_stack
 {
-	t_entry				*entries;
+	t_entry				*first;
 	t_solution			*solution;
-	t_operator			push_to_this_operator;
-	t_operator			rotate_this_operator;
+	t_operator			swap_stack;
+	t_operator			push_to_this_stack;
+	t_operator			rotate_stack;
+	t_operator			reverse_rotate_stack;
 }						t_stack;
 
-void					quicksort_push_swap(int length, int *numbers);
-void					partition_to_cutoff(t_stack *first, t_stack *second
-											, int first_length
-											, int second_length);
+void					quicksort_push_swap(int length, int *numbers
+											, t_operator **overall_solution
+											, int *solution_length);
+void					partition_to_cutoff(t_stack *destination
+											, t_stack *source
+											, int source_length);
+int						get_pivot(t_entry *entries, int length);
+void					cutoff_reached(t_stack *stack, int length);
 void					add_to_solution(t_solution *solution
 											, t_operator operator);
-void					clean_solution(int length, t_operator **operators);
+void					cleanup_solution(int length, t_operator **operators);
+
+void					print_entries(t_entry *entries);
+
+/*
+** located in stack_operations.c
+*/
+
+void					swap(t_stack *stack);
+void					push(t_stack *destination, t_stack *source);
+void					rotate(t_stack *stack);
+void					reverse_rotate(t_stack *stack);
+
+void				print_debug(t_stack *destination, t_stack *source); // nope
 
 #endif

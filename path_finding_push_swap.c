@@ -31,15 +31,13 @@ static t_try		*make_first_try(int length, int *numbers)
 	return (new);
 }
 
-static void			setup_search(t_search *search, int length
-									, int refining_answer)
+static void			setup_search(t_search *search, int length)
 {
 	int				i;
 
 	ft_bzero(search, sizeof(t_search));
 	search->pq = ft_pq_create_new((int (*)(void*, void*))&compare_tries);
 	search->ascending_numbers = malloc(length * sizeof(int));
-	search->refining_answer = refining_answer;
 	i = 0;
 	while (i < length)
 	{
@@ -77,23 +75,18 @@ static void			convert_to_indexes(int length, int **numbers)
 }
 
 void				path_finding_push_swap(int length, int *numbers
-										, int refining_answer)
+										   , t_operator **solution
+										   , int *solution_length)
 {
 	t_search		search;
-	int				max_sortedness;
 	t_try			*peek;
 
-	setup_search(&search, length, refining_answer);
+	// rb tree with solutions that we've already found ready to be re-used
+	setup_search(&search, length);
 	convert_to_indexes(length, &numbers);
 	ft_pq_add(search.pq, make_first_try(length, numbers));
-	max_sortedness = ((t_try*)ft_pq_peek(search.pq))->sortedness;
-	if (max_sortedness < 0)
-		max_sortedness = 0;
-	if (refining_answer)
-		ft_putstr("Searching...");
 	while ((peek = ((t_try*)ft_pq_peek(search.pq))))
 		permutate(&search);
-	if (!refining_answer)
-		print_operators(search.solution_length, search.solution);
-	ft_putchar('\n');
+	*solution = search.solution;
+	*solution_length = search.solution_length;
 }
