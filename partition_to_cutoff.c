@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
-static int			get_pivot(t_entry *entries)
+static int			get_pivot(t_entry *entries, int length)
 {
 	// todo: optimize to look through all entries and find median
+	(void)length;
 	return (entries->number);
 }
 
@@ -23,58 +24,74 @@ static void			push(t_stack *destination, t_stack *source)
 	t_entry			*moving;
 
 	moving = source->entries;
-	moving->last->next = moving->next;
-	moving->next->last = moving->last;
+	if (!moving)
+		ft_putstr("trying to push NULL! (partition_to_cutoff)\n"); // nope
+	if (moving->last)
+		moving->last->next = moving->next;
+	if (moving->next)
+		moving->next->last = moving->last;
 	source->entries = moving->next;
 	moving->next = destination->entries;
-	moving->last = destination->entries->last;
-	moving->next->last = moving;
-	moving->last->next = moving;
+	moving->last = (destination->entries ? destination->entries->last : NULL);
+	if (moving->next)
+		moving->next->last = moving;
+	if (moving->last)
+		moving->last->next = moving;
 	destination->entries = moving;
 }
+
+static void			rotate(t_stack *
 
 static void			cutoff_reached(t_stack *stack, int length)
 {
 	if (length == 1)
 	{
-		stack->entries = stack->entries->next;
-		add_to_solution(stack->solution, stack->rotate_this_operator);
+		add_to_solution(stack->solution, stack->rotate_stack);
+		
 	}
+	(void)stack;
+	(void)length;
+	ft_putstr("cutoff_reached: code this now\n");
 }
 
 void				partition_to_cutoff(t_stack *destination
 										, t_stack *source
-										, int destination_length
 										, int source_length)
 {
 	int				pivot;
 	t_entry			*entry;
 	int				pushed;
+	int				i;
 
 	entry = source->entries;
 	if (source_length <= PARTITION_CUTOFF)
 		cutoff_reached(source, source_length);
 	else
 	{
-		
-		pivot = get_pivot(entry);
+		pivot = get_pivot(entry, source_length);
 		pushed = 0;
-		while (entry)
+		i = 0;
+		// optimization: only loop through until all have been moved
+		while (i < source_length)
 		{
 			if (entry->number < pivot)
 			{
 				push(destination, source);
 				add_to_solution(source->solution
-								, destination->push_to_this_operator);
+								, destination->push_to_this_stack);
 				pushed++;
 			}
+			add_to_solution(source->solution, source->rotate_stack);
 			entry = entry->next;
+			i++;
 		}
-		partition_to_cutoff(source, destination
-							, source_length
-							, pushed);
-		partition_to_cutoff(destination, source
-							, destination_length
-							, source_length - pushed);
+		i = 0;
+		while (i < source_length - pushed)
+		{
+			add_to_solution(source->solution, source->reverse_rotate_stack);
+			i++;
+		}
+		partition_to_cutoff(source, destination, pushed);
+		partition_to_cutoff(destination, source, source_length - pushed);
 	}
 }
