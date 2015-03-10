@@ -69,14 +69,14 @@ static int			push_if_necessary(t_stack *destination, t_stack *source
 	return (pushed);
 }
 
-static void			rotate_back_to_start(t_stack *stack, int number)
+static void			do_n_times(void (*f)(t_stack*), t_stack *stack, int number)
 {
 	int				i;
 
 	i = 0;
 	while (i < number)
 	{
-		reverse_rotate(stack);
+		f(stack);
 		i++;
 	}
 }
@@ -93,7 +93,7 @@ void				partition_to_cutoff(t_stack *destination
 	else
 	{
 		pushed = push_if_necessary(destination, source, source_length);
-		rotate_back_to_start(source, source_length - pushed);
+		do_n_times(reverse_rotate, source, source_length - pushed);
 		partition_to_cutoff(source, destination, pushed);
 		partition_to_cutoff(destination, source, source_length - pushed);
 	}
