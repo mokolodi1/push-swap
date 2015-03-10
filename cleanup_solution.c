@@ -64,7 +64,6 @@ void				cleanup_solution(int length, t_operator **operators)
 	int				should_delete[length];
 	int				delete_count;
 	
-
 	ft_bzero(should_delete, length * sizeof(int));
 	delete_count = 0;
 	i = 0;
