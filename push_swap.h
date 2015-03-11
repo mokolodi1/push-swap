@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:05:15 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:41:17 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define DEBUG						0
+# define DEBUG						1
 
 # define PARTITION_CUTOFF			2
 
@@ -137,8 +137,12 @@ void					add_to_solution(t_solution *solution
 void					cleanup_solution(int length, t_operator **operators);
 
 void					convert_entries_to_array(t_entry *entries, int length
-											 , int *numbers);
+											, int *numbers);
 t_entry					*get_nth_entry(t_entry *first, int n);
+
+int						check_for_exception(int length, int *numbers
+											, t_operator **solution
+											, int *solution_length);
 
 // debug.c
 void					print_debug(t_stack *destination, t_stack *source);

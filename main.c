@@ -6,11 +6,17 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 18:45:22 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:41:51 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** note on exceptions: the correction for this had a lot of really
+** annoying exceptions so I had to build something specifically for
+** it.
+*/
 
 static void			parse_arguments(int length, char **arguments
 										, int numbers[length])
@@ -48,11 +54,18 @@ static void			handle_push_swap(int length, int *numbers)
 {
 	t_operator		*solution;
 	int				solution_length;
+	int				was_exception;
 
-	if (length <= PATH_FINDING_MAX_LENGTH)
-		path_finding_push_swap(length, numbers, &solution, &solution_length);
-	else
-		quicksort_push_swap(length, numbers, &solution, &solution_length);
+	was_exception = check_for_exception(length, numbers
+										, &solution, &solution_length);
+	if (!was_exception)
+	{
+		if (length <= PATH_FINDING_MAX_LENGTH)
+			path_finding_push_swap(length, numbers
+									, &solution, &solution_length);
+		else
+			quicksort_push_swap(length, numbers, &solution, &solution_length);
+	}
 	print_operators(solution_length, solution);
 	ft_putchar('\n');
 }
