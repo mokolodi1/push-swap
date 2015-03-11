@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 16:18:53 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:05:15 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "ft_printf.h"
 # include <limits.h>
 
-# define PATH_FINDING_MAX_LENGTH		7
+# define PATH_FINDING_MAX_LENGTH		6
 
 /*
 ** path finding solution: finds optimal solution using a priority
