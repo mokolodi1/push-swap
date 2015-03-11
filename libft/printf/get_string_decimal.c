@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 11:13:39 by tfleming          #+#    #+#             */
-/*   Updated: 2015/01/31 15:44:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:26:17 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char				*get_string_decimal(t_conversion *conversion
 	intmax_t		value;
 	uintmax_t		unsigned_value;
 
+	unsigned_value = 0;
+	value = 0;
 	if (conversion->specifier == U_DECIMAL)
 		unsigned_value = get_unsigned_number_argument(conversion->length
 														, arguments);

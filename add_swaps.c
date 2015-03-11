@@ -54,6 +54,8 @@ void				add_swaps(t_try *old, t_search *search
 	t_try			*first_swapped;
 	t_try			*second_swapped;
 
+	first_swapped = NULL;
+	second_swapped = NULL;
 	last_operator = old->depth ? old->operators[old->depth - 1] : NO_OPERATOR;
 	if (last_operator > SWAP_S || last_operator == NO_OPERATOR)
 	{

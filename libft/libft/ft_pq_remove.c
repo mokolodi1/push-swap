@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 17:08:25 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:17:33 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 17:31:23 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void			setup(t_priority_queue *priority_queue, void ***data
 		ft_pq_resize_array(priority_queue);
 	*data = priority_queue->data;
 	*current = 1;
-	*to_return = data[*current];
-	data[*current] = data[priority_queue->element_count];
+	*to_return = (*data)[*current];
+	(*data)[*current] = (*data)[priority_queue->element_count];
 }
 
 void				*ft_pq_remove(t_priority_queue *priority_queue)
