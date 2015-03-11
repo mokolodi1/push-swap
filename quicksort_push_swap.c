@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:47:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 15:38:30 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 16:14:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void				quicksort_push_swap(int length, int *numbers
 	setup_entries(entries, length, numbers);
 	setup_stacks(&first_stack, &second_stack, &solution, entries);
 	partition_to_cutoff(&second_stack, &first_stack, length);
-	merge(&first_stack, &second_stack, length);
+	if (second_stack.first)
+		merge(&first_stack, &second_stack, length);
 	*overall_solution = solution.operators;
 	*solution_length = solution.length;
 }

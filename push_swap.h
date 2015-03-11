@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 15:52:51 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 16:18:53 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "ft_printf.h"
 # include <limits.h>
 
-# define PATH_FINDING_MAX_LENGTH		0
+# define PATH_FINDING_MAX_LENGTH		7
 
 /*
 ** path finding solution: finds optimal solution using a priority
@@ -96,7 +96,7 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define DEBUG						1
+# define DEBUG						0
 
 # define PARTITION_CUTOFF			2
 

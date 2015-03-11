@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Put this wherever you can call ./push_swap
 # call with "python tester.py"
 
@@ -10,6 +12,7 @@ import itertools
 import re # regular expressions
 
 from random import shuffle
+from time import time
 
 def get_exitcode_stdout_stderr(cmd):
     """
@@ -124,15 +127,28 @@ def tester_num_arguments(num_args):
         is_correct(permutation, out);
 
 def test_thingy(thingy):
+    begin_time = time()
     cmd = './push_swap ' + convert_permutation_to_arguments(thingy)[1:-1]
     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
+    end_time = time()
     is_correct(thingy, out);
+    return end_time - begin_time
 
 def test_randoms(num_args, number_to_test):
+    total_time = 0
     for i in range(number_to_test):
         thingy = [i for i in range(num_args)]
         shuffle(thingy)
-        test_thingy(thingy)
+        total_time += test_thingy(thingy)
+    return total_time
+
+def generate_spreadsheet_data(low, high, step):
+    for i in range(low, high, step):
+        time_taken = test_randoms(i, 5)
+        print(str(i) + ' arguments took '
+              + str(time_taken / step) + ' seconds')
+
+
     
 # 'main'
 #for i in range(10, 12):
@@ -140,12 +156,9 @@ def test_randoms(num_args, number_to_test):
 
 #test_thingy([3, 4, 6, 1, 5, 9, 0, 2, 7, 8, 11, 12, 13, 19, 18, 17, 16])
 
-test_randoms(2000, 5)
+#test_randoms(2000, 5)
 
-#from time import time
+#generate_spreadsheet_data(10, 1001, 10)
 
-# step = 10
-# for i in range(2000, 10, step):
-#     begin = time()
-#     test_randoms(i, 5)
-#     print(str(i) + ' arguments took ' + str((time() - begin) / step) + ' seconds')
+thingy = [i for i in range(10000)]
+test_thingy(thingy[::-1])

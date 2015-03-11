@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 14:09:59 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 15:55:38 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 16:11:34 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,25 @@ void				partition_to_cutoff(t_stack *destination
 	int				sorted_at_beginning;
 	int				sorted_at_end;
 
+	if (DEBUG) ft_printf("partition_to_cutoff:\n\n");
 	source_length = count_unsorted(source->first, source_length
 								   , &sorted_at_beginning, &sorted_at_end);
-	do_n_times(rotate, source, sorted_at_beginning);
+	if (get_nth_entry(source->first, sorted_at_beginning)
+			!= source->first->previous)
+		do_n_times(rotate, source, sorted_at_beginning);
 	if (source_length <= PARTITION_CUTOFF)
 		cutoff_reached(source, source_length);
 	else
 	{
 		pushed = push_if_necessary(destination, source, source_length);
-		do_n_times(reverse_rotate, source, source_length - pushed);
+		if (DEBUG) ft_printf("reverse rotate source * %d\n\n"
+							 , source_length - pushed);
+		if (get_nth_entry(source->first
+						  , source_length - pushed) != source->first->previous)
+			do_n_times(reverse_rotate, source, source_length - pushed);
 		partition_to_cutoff(source, destination, pushed);
 		partition_to_cutoff(destination, source, source_length - pushed);
 	}
+	if (DEBUG) ft_printf("rotate source * %d\n\n", sorted_at_end);
 	do_n_times(rotate, source, sorted_at_end);
 }

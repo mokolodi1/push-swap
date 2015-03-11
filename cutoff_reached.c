@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 15:45:30 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 15:49:56 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 16:13:01 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@ void				cutoff_reached(t_stack *stack, int length)
 	if (length == 0)
 		return ;
 	if (length == 1)
-		rotate(stack);
+	{
+		if (stack->first->next != stack->first)
+			rotate(stack);
+	}
 	else if (length == 2)
 	{
 		if (stack->first->number > stack->first->next->number)
 			swap(stack);
-		rotate(stack);
-		rotate(stack);
+		if (get_nth_entry(stack->first, length) != stack->first->previous)
+		{
+			if (DEBUG) ft_printf("should add rotates\n\n");
+			rotate(stack);
+			rotate(stack);
+		}
 	}
 	else
 	{
