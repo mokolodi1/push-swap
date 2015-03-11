@@ -11,8 +11,8 @@ void				cutoff_reached(t_stack *stack, int length)
 		rotate(stack);
 		rotate(stack);
 	}
-	else
-		ft_putendl_exit("cutoff reached too soon\n", 2);
+	/* else */
+	/* 	ft_putendl_exit("cutoff reached too soon\n", 2); */
 	/* ft_putstr("cutoff reached:\nlength = "); */
 	/* ft_putnbr(length); */
 	/* ft_putstr("\n"); */
