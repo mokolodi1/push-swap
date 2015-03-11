@@ -86,7 +86,7 @@ def perform_operation(first, second, operation):
         exit(1)
     return first, second
 
-def is_correct(permutation, output):
+def is_correct(permutation, output, should_print=1):
     output = output[:-1]
     if (output == "Error"):
         print("oops");
@@ -108,7 +108,8 @@ def is_correct(permutation, output):
             goodness = False
             break
     if (goodness):
-        print('good :: length = ' + str(len(output)))# + '\tinput = ' + str(list(permutation)))
+        if (should_print):
+            print('good :: length = ' + str(len(output)))
     else:
         print("not good!")
         exit(1)
@@ -126,25 +127,26 @@ def tester_num_arguments(num_args):
         exitcode, out, err = get_exitcode_stdout_stderr(cmd)
         is_correct(permutation, out);
 
-def test_thingy(thingy):
+def test_thingy(thingy, should_print=1):
+    # important not to include is_correct in timing because it takes N^2 time
     begin_time = time()
     cmd = './push_swap ' + convert_permutation_to_arguments(thingy)[1:-1]
     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
     end_time = time()
-    is_correct(thingy, out);
+    is_correct(thingy, out, should_print);
     return end_time - begin_time
 
-def test_randoms(num_args, number_to_test):
+def test_randoms(num_args, number_to_test, should_print=1):
     total_time = 0
     for i in range(number_to_test):
         thingy = [i for i in range(num_args)]
         shuffle(thingy)
-        total_time += test_thingy(thingy)
+        total_time += test_thingy(thingy, should_print)
     return total_time
 
-def generate_spreadsheet_data(low, high, step):
+def generate_spreadsheet_data(low, high, step, number_of_tests, should_print):
     for i in range(low, high, step):
-        time_taken = test_randoms(i, 5)
+        time_taken = test_randoms(i, number_of_tests, should_print)
         print(str(i) + ' arguments took '
               + str(time_taken / step) + ' seconds')
 
@@ -158,7 +160,7 @@ def generate_spreadsheet_data(low, high, step):
 
 #test_randoms(2000, 5)
 
-#generate_spreadsheet_data(10, 1001, 10)
+generate_spreadsheet_data(1, 8, 1, 20, 1)
 
-thingy = [i for i in range(10000)]
-test_thingy(thingy[::-1])
+#thingy = [i for i in range(10000)]
+#test_thingy(thingy[::-1])
