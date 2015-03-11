@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/11 15:22:30 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/11 17:19:14 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =				push_swap
 
 CC =				gcc
-FLAGS =				-Wall -Werror -Wextra -g -O0
+FLAGS =				-Wall -Werror -Wextra -O3
 
 LIBFT =				"libft"
 FT_INCLUDES =		$(LIBFT)/includes
