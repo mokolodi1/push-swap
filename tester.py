@@ -140,12 +140,12 @@ def test_randoms(num_args, number_to_test):
 
 #test_thingy([3, 4, 6, 1, 5, 9, 0, 2, 7, 8, 11, 12, 13, 19, 18, 17, 16])
 
-test_randoms(100, 5)
+test_randoms(2000, 5)
 
-from time import time
+#from time import time
 
-step = 10
-for i in range(10, 2000, step):
-    begin = time()
-    test_randoms(i, 5)
-    print(str(i) + ' arguments took ' + str((time() - begin) / step) + ' seconds')
+# step = 10
+# for i in range(2000, 10, step):
+#     begin = time()
+#     test_randoms(i, 5)
+#     print(str(i) + ' arguments took ' + str((time() - begin) / step) + ' seconds')

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 18:31:06 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 15:52:51 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 */
 
 # include "libft.h"
+# include "ft_printf.h"
 # include <limits.h>
-# include <stdio.h> // nope
 
-# define PATH_FINDING_MAX_LENGTH		6
+# define PATH_FINDING_MAX_LENGTH		0
 
 /*
 ** path finding solution: finds optimal solution using a priority
@@ -96,6 +96,8 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
+# define DEBUG						1
+
 # define PARTITION_CUTOFF			2
 
 typedef struct			s_entry
@@ -134,6 +136,12 @@ void					add_to_solution(t_solution *solution
 											, t_operator operator);
 void					cleanup_solution(int length, t_operator **operators);
 
+void					convert_entries_to_array(t_entry *entries, int length
+											 , int *numbers);
+t_entry					*get_nth_entry(t_entry *first, int n);
+
+// debug.c
+void					print_debug(t_stack *destination, t_stack *source);
 void					print_entries(t_entry *entries);
 
 /*

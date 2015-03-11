@@ -6,38 +6,37 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 14:09:59 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 15:59:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 15:55:38 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int			count_sorted_at_end(t_entry *current, int length)
+static int			count_unsorted(t_entry *current, int length
+										 , int *begin_count
+										 , int *end_count)
 {
-	int				i;
+	int				numbers[length];
 
-	i = 0;
-	while (i < length - 1)
+	convert_entries_to_array(current, length, numbers);
+	ft_quicksort(length, numbers);
+	*begin_count = 0;
+	while (*begin_count < length && current->number == numbers[*begin_count])
 	{
 		current = current->next;
-		i++;
+		(*begin_count)++;
 	}
-	i = 0;
-	while (i < length - 1 && current->number > current->previous->number)
+	*end_count = 0;
+	if (*begin_count != length)
 	{
-		current = current->previous;
-		i++;
+		current = get_nth_entry(current, length - *begin_count);
+		while (current->number == numbers[length - 1 - *end_count])
+		{
+			current = current->previous;
+			(*end_count)++;
+		}
 	}
-	return (i);
-}
-
-void				print_debug(t_stack *destination, t_stack *source) // nope
-{
-	ft_putstr("source = ");
-	print_entries(source->first);
-	ft_putstr("\ndestination = ");
-	print_entries(destination->first);
-	ft_putstr("\n\n");
+	return (length - *begin_count - *end_count);
 }
 
 static int			push_if_necessary(t_stack *destination, t_stack *source
@@ -48,12 +47,10 @@ static int			push_if_necessary(t_stack *destination, t_stack *source
 	int				i;
 
 	pivot = get_pivot(source->first, source_length);
-	ft_putstr("beginning of push_if_necessary:\nlength = ");
-	ft_putnbr(source_length);
-	ft_putstr("\npivot = ");
-	ft_putnbr(pivot);
-	ft_putstr("\n");
-	print_debug(destination, source);
+	if (DEBUG) ft_printf("\nbeginning of push_if_necessary:\n");
+	if (DEBUG) ft_printf("length = %d\n", source_length);
+	if (DEBUG) ft_printf("pivot =  %d\n", pivot);
+	if (DEBUG) print_debug(destination, source);
 	pushed = 0;
 	i = 0;
 	while (i < source_length)
@@ -62,16 +59,10 @@ static int			push_if_necessary(t_stack *destination, t_stack *source
 		if (source->first->number < pivot)
 		{
 			push(destination, source);
-			ft_putstr("after push:\n");
-			print_debug(destination, source);
 			pushed++;
 		}
 		else
-		{
 			rotate(source);
-			ft_putstr("after rotate:\n");
-			print_debug(destination, source);
-		}
 		i++;
 	}
 	return (pushed);
@@ -89,29 +80,17 @@ static void			do_n_times(void (*f)(t_stack*), t_stack *stack, int number)
 	}
 }
 
-/* static t_entry		*nth_entry(t_entry *first, int n) */
-/* { */
-/* 	int				i; */
-
-/* 	i = 1; */
-/* 	while (i < n) */
-/* 	{ */
-/* 		first = first->next; */
-/* 		i++; */
-/* 	} */
-/* 	return (first); */
-/* } */
-
 void				partition_to_cutoff(t_stack *destination
 										, t_stack *source
 										, int source_length)
 {
 	int				pushed;
+	int				sorted_at_beginning;
 	int				sorted_at_end;
 
-	//	ft_putstr("partitioning\n");
-	sorted_at_end = count_sorted_at_end(source->first, source_length);
-	source_length -= sorted_at_end;
+	source_length = count_unsorted(source->first, source_length
+								   , &sorted_at_beginning, &sorted_at_end);
+	do_n_times(rotate, source, sorted_at_beginning);
 	if (source_length <= PARTITION_CUTOFF)
 		cutoff_reached(source, source_length);
 	else

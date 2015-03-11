@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:47:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 18:54:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 15:38:30 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,28 @@ static void			merge(t_stack *first_stack, t_stack *second_stack
 	int				first_counter;
 	int				second_counter;
 
-	/* ft_putstr("merge:"); */
-	/* print_debug(second_stack, first_stack); */
+	if (DEBUG) ft_printf("\n\nmerge:\n");
+	if (DEBUG) print_debug(second_stack, first_stack);
 	first_length = stack_length(first_stack);
 	second_length = length - first_length;
-	/* ft_putstr("first_length = "); */
-	/* ft_putnbr(first_length); */
-	/* ft_putstr("\nsecond_length = "); */
-	/* ft_putnbr(second_length); */
-	/* ft_putstr("\n"); */
+	if (DEBUG) ft_printf("first_length = %d\nsecond_length = %d\n"
+							, first_length, second_length);
 	first_counter = 0;
 	second_counter = 0;
 	while (first_counter < first_length || second_counter < second_length)
 	{
-		/* ft_putstr("\n\nfirst_counter = "); */
-		/* ft_putnbr(first_counter); */
-		/* ft_putstr("\nsecond_counter = "); */
-		/* ft_putnbr(second_counter); */
-		/* ft_putstr("\n"); */
+		if (DEBUG) ft_printf("first_counter = %d\n", first_counter);
+		if (DEBUG) ft_printf("second_counter = %d\n", second_counter);
 		if (first_counter >= first_length
 				|| (second_counter < second_length
 					&& first_stack->first->number > second_stack->first->number))
 		{
 			push(first_stack, second_stack);
-			/* ft_putstr("after push\n"); */
-			/* print_debug(second_stack, first_stack); */
 			second_counter++;
 		}
 		else
 			first_counter++;
 		rotate(first_stack);
-		/* ft_putstr("after rotate\n"); */
-		/* print_debug(second_stack, first_stack); */
 	}
 }
 

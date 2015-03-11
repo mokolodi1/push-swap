@@ -6,11 +6,11 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 13:20:06 by tfleming          #+#    #+#             */
-/*   Updated: 2015/01/26 18:39:42 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 15:19:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 /*
 ** for deal_with_returns, the code was too atrocious with all the

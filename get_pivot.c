@@ -1,22 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_pivot.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/11 14:36:34 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/11 14:36:35 by tfleming         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /*
 ** quickselect (as per en.wikipedia.org/wiki/Quickselect)
 */
-
-static void			move_entries_to_array(t_entry *entries, int length
-													, int *numbers)
-{
-	int				i;
-
-	i = 0;
-	while (i < length)
-	{
-		numbers[i] = entries->number;
-		entries = entries->next;
-		i++;
-	}
-}
 
 static int			quickselect(int *numbers, int length, int from_highest)
 {
@@ -46,6 +44,6 @@ int					get_pivot(t_entry *entries, int length)
 {
 	int				numbers[length];
 	
-	move_entries_to_array(entries, length, numbers);
+	convert_entries_to_array(entries, length, numbers);
 	return (quickselect(numbers, length, length / 2));
 }

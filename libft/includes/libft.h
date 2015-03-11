@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/15 00:37:46 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/11 15:18:57 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,25 +158,6 @@ int					ft_max(int a, int b);
 void				ft_ptrswp(void **first, void **second);
 void				ft_intswp(int *first, int *second);
 int					ft_ptrequ(const void *first, const void *second);
-
-/*
-** get_next_line
-*/
-
-# define BUF_SIZE							1
-# define SPILL_MULT							2
-# define MAX_FD								100
-
-typedef struct		s_stock
-{
-	char	*spill;
-	long	length;
-	long	lu;
-	int		read_ret;
-	char	*line_end;
-}					t_stock;
-
-int					get_next_line(int fd, char **line);
 
 /*
 ** linked lists
