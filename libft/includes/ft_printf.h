@@ -34,22 +34,20 @@
 # define OKAY							0
 # define LARGEST_STAR_ARGUMENT			((unsigned int)INT_MAX)
 
-typedef char			t_bool;
-
 typedef struct			s_format
 {
-	const char	*string;
-	size_t		location;
-	size_t		written;
+	const char			*string;
+	size_t				location;
+	size_t				written;
 }						t_format;
 
 typedef struct			s_flags
 {
-	t_bool		left_justify;
-	t_bool		pad_with_zeros;
-	t_bool		show_sign;
-	t_bool		positive_values_begin_blank;
-	t_bool		hashtag;
+	int					left_justify;
+	int					pad_with_zeros;
+	int					show_sign;
+	int					positive_values_begin_blank;
+	int					hashtag;
 }						t_flags;
 
 /*

@@ -18,7 +18,7 @@ char				*get_string_hex(t_conversion *conversion
 	char			*string;
 	char			*final;
 	uintmax_t		value;
-	t_bool			is_zero_value;
+	int				is_zero_value;
 
 	value = get_unsigned_number_argument(conversion->length, arguments);
 	if (!value && conversion->precision_set)

@@ -16,7 +16,7 @@
 ** get_flag: returns pointer to the flag
 */
 
-static t_bool		*get_flag(char c, t_flags *flags)
+static int			*get_flag(char c, t_flags *flags)
 {
 	if (c == '-')
 		return (&flags->left_justify);
@@ -42,7 +42,7 @@ static int			repeated_flag(char offending_flag, t_format *format)
 
 int					parse_flags(t_conversion *conversion, t_format *format)
 {
-	t_bool			*flag;
+	int				*flag;
 	char			current;
 
 	while (((current = *get_current(format)))
