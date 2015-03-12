@@ -32,6 +32,7 @@ FT_COMPILED =		ft_islower.o \
 					ft_isspace.o \
 					ft_strtolower.o \
 					ft_strtoupper.o \
+					ft_is_valid_int.o \
 					ft_strlen.o \
 					ft_strlen_wide.o \
 					ft_strnlen.o \

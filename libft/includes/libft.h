@@ -52,6 +52,7 @@ int					ft_isprint(int c);
 int					ft_isspace(int c);
 void				ft_strtolower(char *string);
 void				ft_strtoupper(char *string);
+int					ft_is_valid_int(char *string);
 
 /*
 ** string

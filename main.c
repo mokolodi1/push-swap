@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+static void			validate_arguments(int length, char **arguments)
+{
+	int				i;
+
+	i = 0;
+	while (i < length)
+	{
+		if (!ft_is_valid_int(arguments[i]))
+			ft_putendl_exit("Error", 1);
+		i++;
+	}
+}
+
 static void			parse_arguments(int length, char **arguments
 										, int numbers[length])
 {
@@ -25,7 +38,7 @@ static void			parse_arguments(int length, char **arguments
 	}
 }
 
-static void			validate_arguments(int length, int numbers[length])
+static void			validate_numbers(int length, int numbers[length])
 {
 	int				copy[length];
 	int				i;
@@ -36,10 +49,7 @@ static void			validate_arguments(int length, int numbers[length])
 	while (i < length - 1)
 	{
 		if (copy[i] == copy[i + 1])
-		{
-			ft_putendl("Error");
-			exit(1);
-		}
+			ft_putendl_exit("Error", 1);
 		i++;
 	}
 }
@@ -72,9 +82,10 @@ int					main(int argc, char **argv)
 	argv++;
 	if (argc > 0)
 	{
+		validate_arguments(argc, argv);
 		numbers = malloc(argc * sizeof(int));
 		parse_arguments(argc, argv, numbers);
-		validate_arguments(argc, numbers);
+		validate_numbers(argc, numbers);
 		handle_push_swap(argc, numbers);
 	}
 	else
