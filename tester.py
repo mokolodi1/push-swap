@@ -3,6 +3,8 @@
 # Put this wherever you can call ./push_swap
 # call with "python tester.py"
 
+from __future__ import print_function
+
 # for capturing output from ./push_swap
 import shlex
 from subprocess import Popen, PIPE
@@ -13,6 +15,8 @@ import re # regular expressions
 
 from random import shuffle
 from time import time
+
+import sys
 
 def get_exitcode_stdout_stderr(cmd):
     """
@@ -104,7 +108,8 @@ def is_correct(permutation, output, should_print=1):
     goodness = True
     for i in range(len(first) - 1):
         if (first[i] > first[i + 1]):
-            print('not sorted at end of operations for input: ' + str(list(permutation)) + ' and output ' + str(output))
+            print('not sorted at end of operations for input: '
+                  + str(list(permutation)) + ' and output ' + str(output))
             goodness = False
             break
     if (goodness):
@@ -124,13 +129,17 @@ def tester_num_arguments(num_args):
     """
     for permutation in itertools.permutations([i for i in range(num_args)]):
         cmd = './push_swap ' + convert_permutation_to_arguments(permutation);
+        print('testing "' + str(cmd) + '" ', end="")
+        begin_time = time()
         exitcode, out, err = get_exitcode_stdout_stderr(cmd)
+        end_time = time()
+        print("time = " + str(end_time - begin_time)[:7] + "\t", end = " ")
         is_correct(permutation, out);
 
 def test_thingy(thingy, should_print=1):
     # important not to include is_correct in timing because it takes N^2 time
-    begin_time = time()
     cmd = './push_swap ' + convert_permutation_to_arguments(thingy)[1:-1]
+    begin_time = time()
     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
     end_time = time()
     is_correct(thingy, out, should_print);
@@ -150,17 +159,17 @@ def generate_spreadsheet_data(low, high, step, number_of_tests, should_print):
         print(str(i) + ' arguments took '
               + str(time_taken / step) + ' seconds')
 
-
-    
 # 'main'
-#for i in range(10, 12):
-#    tester_num_arguments(i);
+for i in range(1, 10):
+    tester_num_arguments(i);
+    sys.stderr.write("done with i = " + str(i) + "\n")
+
 
 #test_thingy([3, 4, 6, 1, 5, 9, 0, 2, 7, 8, 11, 12, 13, 19, 18, 17, 16])
 
 #test_randoms(2000, 5)
 
-generate_spreadsheet_data(1, 8, 1, 20, 1)
+#generate_spreadsheet_data(1, 8, 1, 20, 1)
 
 #thingy = [i for i in range(10000)]
 #test_thingy(thingy[::-1])
