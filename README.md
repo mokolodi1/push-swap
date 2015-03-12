@@ -21,33 +21,33 @@ A quick English translation:
 
 Here's an example of the stacks in action: 
 
-Starting with:
-A: 2 1 3 6 5 8
-B: 
+- Starting with:  
+   A: 2 1 3 6 5 8  
+   B: 
 
-- sa
-A: 1 2 3 6 5 8
-B: 
+- sa  
+   A: 1 2 3 6 5 8  
+   B: 
 
-- pb pb pb
-A: 6 5 8
-B: 3 2 1
+- pb pb pb  
+   A: 6 5 8  
+   B: 3 2 1
 
-- ra rb (aka rr)
-A: 5 8 6
-B: 2 1 3
+- ra rb (aka rr)  
+   A: 5 8 6  
+   B: 2 1 3
 
-- rra rrb (aka rrr)
-A: 6 5 8
-B: 3 2 1
+- rra rrb (aka rrr)  
+   A: 6 5 8  
+   B: 3 2 1
 
-- sa
-A: 5 6 8
-B: 3 2 1
+- sa  
+   A: 5 6 8  
+   B: 3 2 1
 
-- pa pa pa
-A: 1 2 3 5 6 8
-B:
+- pa pa pa  
+   A: 1 2 3 5 6 8  
+   B:
 
 My program uses two different algorithms:
 - when the number of arguments is less than 7, I use a priority queue with a heuristic.
