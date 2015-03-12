@@ -118,7 +118,7 @@ def is_correct(permutation, output, should_print=1):
     else:
         print("not good!")
         exit(1)
-    return (output.count(" "))
+    return len(output)
 
 def convert_permutation_to_arguments(array):
     return re.sub('[(),]', '', str(array))
@@ -129,7 +129,7 @@ def tester_num_arguments(num_args, should_print=1):
     """
     permutation_list = itertools.permutations([i for i in range(num_args)])
     print("about to test " + str(num_args) + " argument permutations ("
-          + str(len(list(permutation_list))) + ")")
+          + str(len(list(permutation_list))) + " possible permutations)")
     i = 0
     for permutation in itertools.permutations([i for i in range(num_args)]):
         cmd = './push_swap ' + convert_permutation_to_arguments(permutation);
@@ -151,38 +151,43 @@ def test_thingy(thingy, should_print=1):
     begin_time = time()
     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
     end_time = time()
-    is_correct(thingy, out, should_print);
-    return end_time - begin_time
+    output_length = is_correct(thingy, out, should_print);
+    return end_time - begin_time, output_length
 
 def test_randoms(num_args, number_to_test, should_print=1):
     total_time = 0
+    lengths = []
     for i in range(number_to_test):
         thingy = [i for i in range(num_args)]
         shuffle(thingy)
-        total_time += test_thingy(thingy, should_print)
-    return total_time
+        thing_time, thing_length = test_thingy(thingy, should_print)
+        total_time += thing_time
+        lengths.append(thing_length)
+    return total_time, sum(lengths) / float(len(lengths))
 
-def generate_spreadsheet_data(low, high, step, number_of_tests, should_print):
+def generate_spreadsheet_data(low, high, step, number_of_tests):
     for i in range(low, high, step):
-        time_taken = test_randoms(i, number_of_tests, should_print)
+        time_taken, average_length = test_randoms(i, number_of_tests, 0)
         print(str(i) + ' arguments took '
-              + str(time_taken / number_of_tests) + ' seconds per test')
+              + str(time_taken / number_of_tests)
+              + ' seconds per test and average length = ' + str(average_length))
 
-# 'main'
-
+# Actual code
+        
 print("about to test all possible inputs up to 7 numbers")
+print()
 for i in range(1, 8):
     tester_num_arguments(i, 0);
-    sys.stderr.write("done with " + str(i) + " argument permutations\n")
     print()
 
 print("done with testing all argument permutations between 1 and 7");
 
 print()
 print()
-print("Place the following in the spreadsheet")
+print("The following will create a random input with a given number of elements 5 times and average the running time and output length for those calls.")
+print("Place the following in the spreadsheet: ")
 print()
-generate_spreadsheet_data(50, 2001, 50, 5, 1)
-
-#thingy = [i for i in range(10000)]
-#test_thingy(thingy[::-1])
+# (low value, high value, step, number of tests to run per number of arguments)
+generate_spreadsheet_data(50, 2001, 50, 5)
+print()
+print("spreadsheet link: https://docs.google.com/spreadsheets/d/1yJpweZx_brf2LFbZkqXIxVdw681016XiLf9U3HxJUwI/edit?usp=sharing")
