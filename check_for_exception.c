@@ -18,7 +18,7 @@
 ** it.
 */
 
-int					found_exception(t_operator **solution, int *solution_length
+static int			found_exception(t_operator **solution, int *solution_length
 									, t_operator first)
 {
 	*solution_length = 1;

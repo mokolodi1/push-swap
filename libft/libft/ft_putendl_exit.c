@@ -14,6 +14,6 @@
 
 void			ft_putendl_exit(char const *source, int exit_code)
 {
-	ft_putstr(source);
+	ft_putendl(source);
 	exit(exit_code);
 }
