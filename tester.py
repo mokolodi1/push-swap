@@ -123,18 +123,27 @@ def is_correct(permutation, output, should_print=1):
 def convert_permutation_to_arguments(array):
     return re.sub('[(),]', '', str(array))
 
-def tester_num_arguments(num_args):
+def tester_num_arguments(num_args, should_print=1):
     """
     tests push_swap for all possible inputs with num_args arguments
     """
+    permutation_list = itertools.permutations([i for i in range(num_args)])
+    print("about to test " + str(num_args) + " argument permutations ("
+          + str(len(list(permutation_list))) + ")")
+    i = 0
     for permutation in itertools.permutations([i for i in range(num_args)]):
         cmd = './push_swap ' + convert_permutation_to_arguments(permutation);
-        print('testing "' + str(cmd) + '" ', end="")
+        if (should_print):
+            print('testing "' + str(cmd) + '" ', end="")
         begin_time = time()
         exitcode, out, err = get_exitcode_stdout_stderr(cmd)
         end_time = time()
-        print("time = " + str(end_time - begin_time)[:7] + "\t", end = " ")
-        is_correct(permutation, out);
+        if (should_print):
+            print("time = " + str(end_time - begin_time)[:7] + "\t", end = " ")
+        is_correct(permutation, out, should_print);
+        if (i % 25 == 0):
+            print("tested " + str(i))
+        i += 1
 
 def test_thingy(thingy, should_print=1):
     # important not to include is_correct in timing because it takes N^2 time
@@ -157,19 +166,23 @@ def generate_spreadsheet_data(low, high, step, number_of_tests, should_print):
     for i in range(low, high, step):
         time_taken = test_randoms(i, number_of_tests, should_print)
         print(str(i) + ' arguments took '
-              + str(time_taken / step) + ' seconds')
+              + str(time_taken / number_of_tests) + ' seconds per test')
 
 # 'main'
-for i in range(1, 10):
-    tester_num_arguments(i);
-    sys.stderr.write("done with i = " + str(i) + "\n")
 
+print("about to test all possible inputs up to 7 numbers")
+for i in range(1, 8):
+    tester_num_arguments(i, 0);
+    sys.stderr.write("done with " + str(i) + " argument permutations\n")
+    print()
 
-#test_thingy([3, 4, 6, 1, 5, 9, 0, 2, 7, 8, 11, 12, 13, 19, 18, 17, 16])
+print("done with testing all argument permutations between 1 and 7");
 
-#test_randoms(2000, 5)
-
-#generate_spreadsheet_data(1, 8, 1, 20, 1)
+print()
+print()
+print("Place the following in the spreadsheet")
+print()
+generate_spreadsheet_data(50, 2001, 50, 5, 1)
 
 #thingy = [i for i in range(10000)]
 #test_thingy(thingy[::-1])
