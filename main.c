@@ -58,16 +58,13 @@ static void			handle_push_swap(int length, int *numbers)
 {
 	t_operator		*solution;
 	int				solution_length;
-	int				was_exception;
 
-	was_exception = check_for_exception(length, numbers
-										, &solution, &solution_length);
-	if (!was_exception)
+	if (length <= PATH_FINDING_MAX_LENGTH)
+		path_finding_push_swap(length, numbers
+								, &solution, &solution_length);
+	else
 	{
-		if (length <= PATH_FINDING_MAX_LENGTH)
-			path_finding_push_swap(length, numbers
-									, &solution, &solution_length);
-		else
+		if (!check_for_exception(length, numbers, &solution, &solution_length))
 			quicksort_push_swap(length, numbers, &solution, &solution_length);
 	}
 	print_operators(solution_length, solution);
@@ -80,18 +77,10 @@ int					main(int argc, char **argv)
 
 	argc--;
 	argv++;
-	if (argc > 0)
-	{
-		validate_arguments(argc, argv);
-		numbers = malloc(argc * sizeof(int));
-		parse_arguments(argc, argv, numbers);
-		validate_numbers(argc, numbers);
-		handle_push_swap(argc, numbers);
-	}
-	else
-	{
-		ft_putendl("Error");
-		exit(1);
-	}
+	validate_arguments(argc, argv);
+	numbers = malloc(argc * sizeof(int));
+	parse_arguments(argc, argv, numbers);
+	validate_numbers(argc, numbers);
+	handle_push_swap(argc, numbers);
 	return (0);
 }
