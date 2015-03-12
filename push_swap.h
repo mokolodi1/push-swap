@@ -96,7 +96,7 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define DEBUG						1
+# define DEBUG						0
 
 # define PARTITION_CUTOFF			2
 

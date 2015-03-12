@@ -40,6 +40,7 @@ COMPILED =			main.o \
 					convert_entries_to_array.o \
 					get_nth_entry.o \
 					print_operators.o \
+					check_for_exception.o \
 					debug.o
 
 all: $(NAME)

@@ -12,12 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-** note on exceptions: the correction for this had a lot of really
-** annoying exceptions so I had to build something specifically for
-** it.
-*/
-
 static void			parse_arguments(int length, char **arguments
 										, int numbers[length])
 {
