@@ -16,32 +16,32 @@ CC =				gcc
 FLAGS =				-Wall -Werror -Wextra -g -O0
 
 LIBFT =				"libft"
-FT_INCLUDES =		$(LIBFT)/includes
+FT_INCLUDES =			$(LIBFT)/includes
 
 COMPILED =			main.o \
-					path_finding_push_swap.o \
-					permutate.o \
-					found_solution.o \
-					add_swaps.o \
-					add_pushes.o \
-					add_rotates.o \
-					add_reverse_rotates.o \
-					compare_tries.o \
-					create_general_try.o \
-					free_try.o \
-					set_score.o \
-					quicksort_push_swap.o \
-					partition_to_cutoff.o \
-					stack_operations.o \
-					get_pivot.o \
-					cutoff_reached.o \
-					add_to_solution.o \
-					cleanup_solution.o \
-					convert_entries_to_array.o \
-					get_nth_entry.o \
-					print_operators.o \
-					check_for_exception.o \
-					debug.o
+				path_finding_push_swap.o \
+				permutate.o \
+				found_solution.o \
+				add_swaps.o \
+				add_pushes.o \
+				add_rotates.o \
+				add_reverse_rotates.o \
+				compare_tries.o \
+				create_general_try.o \
+				free_try.o \
+				set_score.o \
+				quicksort_push_swap.o \
+				partition_to_cutoff.o \
+				stack_operations.o \
+				get_pivot.o \
+				cutoff_reached.o \
+				add_to_solution.o \
+				cleanup_solution.o \
+				convert_entries_to_array.o \
+				get_nth_entry.o \
+				print_operators.o \
+				check_for_exception.o \
+				debug.o
 
 all: $(NAME)
 
