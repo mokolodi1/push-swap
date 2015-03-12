@@ -53,11 +53,11 @@ My program uses two different algorithms:
 - when the number of arguments is less than 7, I use a priority queue with a heuristic.
 - when the number of arguments is 7 or greater, I recursively partition the array and then push the resulting values to the back of the stacks, with a merge of the two stacks at the end.
 
-Example program usage:
-$ make
-made libft.a
-made push_swap
-$ ./push_swap 2 8 6 3
+Example program usage:  
+$ make  
+made libft.a  
+made push_swap  
+$ ./push_swap 2 8 6 3  
 pb sa rra pa
 
 I have included a python testing script called testing.py. It makes sure the program is runing correctly by taking the result and performing the operations to the input and making sure the resulting array is sorted. It also has a linked Google Sheet where one can place part of the output to show the running time and average output length over different input lengths. 
