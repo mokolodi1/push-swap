@@ -19,6 +19,36 @@ A quick English translation:
   - rrb: reverse rotate B: move all the elements on B and move them towards the end, moving the last element to the beginning
   - rrr: do commands rra and rrb at the same time
 
+Here's an example of the stacks in action: 
+
+Starting with:
+A: 2 1 3 6 5 8
+B: 
+
+- sa
+A: 1 2 3 6 5 8
+B: 
+
+- pb pb pb
+A: 6 5 8
+B: 3 2 1
+
+- ra rb (aka rr)
+A: 5 8 6
+B: 2 1 3
+
+- rra rrb (aka rrr)
+A: 6 5 8
+B: 3 2 1
+
+- sa
+A: 5 6 8
+B: 3 2 1
+
+- pa pa pa
+A: 1 2 3 5 6 8
+B:
+
 My program uses two different algorithms:
 - when the number of arguments is less than 7, I use a priority queue with a heuristic.
 - when the number of arguments is 7 or greater, I recursively partition the array and then push the resulting values to the back of the stacks, with a merge of the two stacks at the end.
