@@ -61,3 +61,6 @@ $ ./push_swap 2 8 6 3
 pb sa rra pa
 
 I have included a python testing script called testing.py. It makes sure the program is runing correctly by taking the result and performing the operations to the input and making sure the resulting array is sorted. It also has a linked Google Sheet where one can place part of the output to show the running time and average output length over different input lengths. 
+
+The above-mentioned spreadsheet:
+https://docs.google.com/spreadsheets/d/1yJpweZx_brf2LFbZkqXIxVdw681016XiLf9U3HxJUwI/edit?usp=sharing
