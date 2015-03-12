@@ -98,7 +98,7 @@ void					print_operators(int length, t_operator *operators);
 
 # define DEBUG						0
 
-# define PARTITION_CUTOFF			2
+# define PARTITION_CUTOFF			3
 
 typedef struct			s_entry
 {
@@ -131,7 +131,8 @@ void					partition_to_cutoff(t_stack *destination
 											, t_stack *source
 											, int source_length);
 int						get_pivot(t_entry *entries, int length);
-void					cutoff_reached(t_stack *stack, int length);
+void					cutoff_reached(t_stack *second, t_stack *first
+										, int length);
 void					add_to_solution(t_solution *solution
 											, t_operator operator);
 void					cleanup_solution(int length, t_operator **operators);

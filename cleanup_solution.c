@@ -57,7 +57,7 @@ static void			create_new_operators(int length, t_operator **operators
 	*operators  = new_operators;
 }
 
-// todo: combine rotates
+// todo: combine rotates: ra, rb ==> rr; also reverse
 void				cleanup_solution(int length, t_operator **operators)
 {
 	int				i;

@@ -12,31 +12,68 @@
 
 #include "push_swap.h"
 
-void				cutoff_reached(t_stack *stack, int length)
+static void			three_things_part_two(t_stack *destination
+										  , t_stack *source
+								 , int second, int third)
+{
+	if (second < third)
+	{
+		swap(source);
+		rotate(source);
+		swap(source);
+		rotate(source);
+		rotate(source);
+	}
+	else
+	{
+		push(destination, source);
+		push(destination, source);
+		rotate(destination);
+		rotate(destination);
+		rotate(source);
+	}
+}
+
+static void			three_things_part_one(t_stack *destination, t_stack *source
+								 , int first, int second, int third)
+{
+	if (first < second)
+	{
+		swap(source);
+		push(destination, source);
+		push(destination, source);
+		rotate(destination);
+		rotate(destination);
+		rotate(source);
+	}
+	else
+		three_things_part_two(destination, source, second, third);
+}
+
+void				cutoff_reached(t_stack *destination, t_stack *source, int length)
 {
 	if (DEBUG) ft_printf("\ncutoff_reached:\n");
 	if (length == 0)
 		return ;
 	if (length == 1)
 	{
-		if (stack->first->next != stack->first)
-			rotate(stack);
+		if (source->first->next != source->first)
+			rotate(source);
 	}
 	else if (length == 2)
 	{
-		if (stack->first->number > stack->first->next->number)
-			swap(stack);
-		if (get_nth_entry(stack->first, length) != stack->first->previous)
+		if (source->first->number > source->first->next->number)
+			swap(source);
+		if (get_nth_entry(source->first, length) != source->first->previous)
 		{
 			if (DEBUG) ft_printf("should add rotates\n\n");
-			rotate(stack);
-			rotate(stack);
+			rotate(source);
+			rotate(source);
 		}
 	}
-	else
-	{
-		ft_printf("cutoff_reached called but length is incorrect: %d\n"
-					, length);
-		exit(1);
-	}
+	else if (length == 3)
+		three_things_part_one(destination, source, source->first->number
+								, source->first->next->number
+								, source->first->next->next->number);
+	if (DEBUG) ft_printf("cutoff finished\n");
 }

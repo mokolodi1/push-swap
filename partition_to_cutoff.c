@@ -95,7 +95,7 @@ void				partition_to_cutoff(t_stack *destination
 			!= source->first->previous)
 		do_n_times(rotate, source, sorted_at_beginning);
 	if (source_length <= PARTITION_CUTOFF)
-		cutoff_reached(source, source_length);
+		cutoff_reached(destination, source, source_length);
 	else
 	{
 		pushed = push_if_necessary(destination, source, source_length);
