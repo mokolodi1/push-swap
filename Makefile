@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/11 17:28:16 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/13 15:27:08 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,12 +36,10 @@ COMPILED =			main.o \
 				get_pivot.o \
 				cutoff_reached.o \
 				add_to_solution.o \
-				cleanup_solution.o \
 				convert_entries_to_array.o \
 				get_nth_entry.o \
 				print_operators.o \
-				check_for_exception.o \
-				debug.o
+				check_for_exception.o
 
 all: $(NAME)
 

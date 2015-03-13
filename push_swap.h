@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:41:17 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 15:37:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "ft_printf.h"
 # include <limits.h>
 
-# define PATH_FINDING_MAX_LENGTH		6
+# define PATH_FINDING_MAX_LENGTH		0
 
 /*
 ** path finding solution: finds optimal solution using a priority
@@ -96,7 +96,7 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define DEBUG						0
+# define DEBUG						1
 
 # define PARTITION_CUTOFF			3
 
@@ -132,10 +132,9 @@ void					partition_to_cutoff(t_stack *destination
 											, int source_length);
 int						get_pivot(t_entry *entries, int length);
 void					cutoff_reached(t_stack *second, t_stack *first
-										, int length);
+											, int length);
 void					add_to_solution(t_solution *solution
 											, t_operator operator);
-void					cleanup_solution(int *length, t_operator **operators);
 
 void					convert_entries_to_array(t_entry *entries, int length
 											, int *numbers);
@@ -145,19 +144,13 @@ int						check_for_exception(int length, int *numbers
 											, t_operator **solution
 											, int *solution_length);
 
-// debug.c
-void					print_debug(t_stack *destination, t_stack *source);
-void					print_entries(t_entry *entries);
-
 /*
 ** located in stack_operations.c
 */
 
-void					swap(t_stack *stack);
+void					swap(t_stack *destination, t_stack *source);
 void					push(t_stack *destination, t_stack *source);
-void					rotate(t_stack *stack);
-void					reverse_rotate(t_stack *stack);
-
-void				print_debug(t_stack *destination, t_stack *source); // nope
+void					rotate(t_stack *destination, t_stack *source);
+void					reverse_rotate(t_stack *destination, t_stack *source);
 
 #endif

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_reverse_rotates.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/13 13:27:20 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/13 13:27:49 by tfleming         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static t_try		*create_reverse_rotate_first(t_try *old)
@@ -6,7 +18,8 @@ static t_try		*create_reverse_rotate_first(t_try *old)
 
 	new = create_general_try(old);
 	new->first = malloc((new->first_length + 1) * sizeof(int));
-	ft_memcpy(new->first + 1, old->first, (old->first_length - 1) * sizeof(int));
+	ft_memcpy(new->first + 1, old->first
+				, (old->first_length - 1) * sizeof(int));
 	new->first[0] = old->first[old->first_length - 1];
 	new->first[new->first_length] = 0;
 	new->second = old->second;
@@ -22,7 +35,8 @@ static t_try		*create_reverse_rotate_second(t_try *old)
 
 	new = create_general_try(old);
 	new->second = malloc((new->second_length + 1) * sizeof(int));
-	ft_memcpy(new->second + 1, old->second, (old->second_length - 1) * sizeof(int));
+	ft_memcpy(new->second + 1, old->second
+				, (old->second_length - 1) * sizeof(int));
 	new->second[0] = old->second[new->second_length - 1];
 	new->second[new->second_length] = 0;
 	new->first = old->first;

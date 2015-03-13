@@ -6,61 +6,134 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 15:25:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 15:33:52 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 15:49:52 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void				swap(t_stack *stack)
+void				print_stack(t_stack *stack)
 {
-	ft_intswp(&stack->first->number, &stack->first->next->number);
-	add_to_solution(stack->solution, stack->swap_stack);
-	if (DEBUG) ft_printf("after swap:              ");
-	if (DEBUG) print_entries(stack->first);
-	if (DEBUG) ft_printf("\n\n");
+	t_entry			*current;
+	ft_printf("[");
+	if (!stack->first)
+		ft_printf("none");
+	else
+	{
+		current = stack->first;
+		ft_printf("%d", current->number);
+		current = current->next;
+		while (current != stack->first)
+		{
+			ft_printf(" %d", current->number);
+			current = current->next;
+		}
+	}
+	ft_printf("]");
+}
+
+static int			last_operator_is(t_solution *solution, t_operator operator)
+{
+	if (solution->length > 0
+		&& solution->operators[solution->length - 1] == operator)
+		return (1);
+	return (0);
+}
+
+static t_operator	current_operator(t_stack *stack)
+{
+	if (stack->solution->length > 0)
+		return (stack->solution->operators[stack->solution->length]);
+	else
+		return (NO_OPERATOR);
+}
+
+void				swap(t_stack *destination, t_stack *source)
+{
+	t_solution		*solution;
+
+	solution = source->solution;
+	if (last_operator_is(solution, source->swap_stack))
+		solution->length--;
+	else if (last_operator_is(solution, destination->swap_stack))
+		solution->operators[solution->length] = SWAP_S;
+	else
+	{
+		ft_intswp(&source->first->number, &source->first->next->number);
+		add_to_solution(solution, source->swap_stack);
+	}
 }
 
 void				push(t_stack *destination, t_stack *source)
 {
 	t_entry			*moving;
 
-	moving = source->first;
-	moving->previous->next = moving->next;
-	moving->next->previous = moving->previous;
-	source->first = (source->first->next == moving ? NULL : moving->next);
-	moving->next = (destination->first
-						? destination->first : moving);
-	moving->previous = (destination->first
-						? destination->first->previous : moving);
-	moving->next->previous = moving;
-	moving->previous->next = moving;
-	destination->first = moving;
-	add_to_solution(source->solution, destination->push_to_this_stack);
+	if (last_operator_is(source->solution, source->push_to_this_stack))
+		source->solution->length--;
+	else
+	{
+		moving = source->first;
+		moving->previous->next = moving->next;
+		moving->next->previous = moving->previous;
+		source->first = (source->first->next == moving ? NULL : moving->next);
+		moving->next = (destination->first
+							? destination->first : moving);
+		moving->previous = (destination->first
+							? destination->first->previous : moving);
+		moving->next->previous = moving;
+		moving->previous->next = moving;
+		destination->first = moving;
+		add_to_solution(source->solution, destination->push_to_this_stack);
+	}
 	if (DEBUG) ft_printf("after push:\n");
-	if (DEBUG) print_debug(destination, source);
+	if (DEBUG) ft_printf("source:                 ");
+	if (DEBUG) print_stack(source);
+	if (DEBUG) ft_printf("destination:            ");
+	if (DEBUG) print_stack(destination);
+	if (DEBUG) ft_printf("\n");
 }
 
-void					rotate(t_stack *stack)
+void				rotate(t_stack *destination, t_stack *source)
 {
-	if (stack->first != stack->first->next)
+	t_solution		*solution;
+
+	if (source->first != source->first->next)
 	{
-		stack->first = stack->first->next;
-		add_to_solution(stack->solution, stack->rotate_stack);
+		solution = source->solution;
+		if (last_operator_is(solution, source->reverse_rotate_stack))
+			solution->length--;
+		else
+		{
+			source->first = source->first->next;
+			if (current_operator(source) == destination->rotate_stack)
+				solution->operators[solution->length] = ROTATE_A_B;
+			else
+				add_to_solution(solution, source->rotate_stack);
+		}
+		if (DEBUG) ft_printf("after rotate:           ");
+		if (DEBUG) print_stack(source);
 	}
-	if (DEBUG) ft_printf("after rotate:            ");
-	if (DEBUG) print_entries(stack->first);
-	if (DEBUG) ft_printf("\n\n");
 }
 
-void				reverse_rotate(t_stack *stack)
+void				reverse_rotate(t_stack *destination, t_stack *source)
 {
-	if (stack->first != stack->first->previous)
+	t_solution		*solution;
+
+	if (source->first != source->first->previous)
 	{
-		stack->first = stack->first->previous;
-		add_to_solution(stack->solution, stack->reverse_rotate_stack);
+		solution = source->solution;
+		if (last_operator_is(solution, source->rotate_stack))
+			solution->length--;
+		else
+		{
+			source->first = source->first->previous;
+			if (current_operator(source) == destination->rotate_stack)
+				solution->operators[solution->length] =
+					REVERSE_ROTATE_A_B;
+			else
+				add_to_solution(solution, source->reverse_rotate_stack);
+		}
+		if (DEBUG) ft_printf("after reverse rotate:   ");
+		if (DEBUG) print_stack(source);
 	}
-	if (DEBUG) ft_printf("after reverse rotate:    ");
-	if (DEBUG) print_entries(stack->first);
-	if (DEBUG) ft_printf("\n\n");
 }

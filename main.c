@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:41:51 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 15:28:15 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void			handle_push_swap(int length, int *numbers)
 		if (!check_for_exception(length, numbers, &solution, &solution_length))
 			quicksort_push_swap(length, numbers, &solution, &solution_length);
 	}
-	cleanup_solution(&solution_length, &solution);
 	print_operators(solution_length, solution);
 	ft_putchar('\n');
 }

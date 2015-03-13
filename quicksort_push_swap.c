@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:47:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 16:14:45 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 15:06:20 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int			stack_length(t_stack *stack)
 {
 	t_entry			*current;
 	int				count;
-	
+
 	current = stack->first;
 	if (!current)
 		return (0);
@@ -55,28 +55,22 @@ static void			merge(t_stack *first_stack, t_stack *second_stack
 	int				first_counter;
 	int				second_counter;
 
-	if (DEBUG) ft_printf("\n\nmerge:\n");
-	if (DEBUG) print_debug(second_stack, first_stack);
 	first_length = stack_length(first_stack);
 	second_length = length - first_length;
-	if (DEBUG) ft_printf("first_length = %d\nsecond_length = %d\n"
-							, first_length, second_length);
 	first_counter = 0;
 	second_counter = 0;
 	while (first_counter < first_length || second_counter < second_length)
 	{
-		if (DEBUG) ft_printf("first_counter = %d\n", first_counter);
-		if (DEBUG) ft_printf("second_counter = %d\n", second_counter);
 		if (first_counter >= first_length
-				|| (second_counter < second_length
-					&& first_stack->first->number > second_stack->first->number))
+			|| (second_counter < second_length
+				&& first_stack->first->number > second_stack->first->number))
 		{
 			push(first_stack, second_stack);
 			second_counter++;
 		}
 		else
 			first_counter++;
-		rotate(first_stack);
+		rotate(second_stack, first_stack);
 	}
 }
 

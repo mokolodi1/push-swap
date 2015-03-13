@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_rotates.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/13 13:28:19 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/13 13:28:20 by tfleming         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static t_try		*create_rotated_first(t_try *old)
@@ -23,7 +35,8 @@ static t_try		*create_rotated_second(t_try *old)
 
 	new = create_general_try(old);
 	new->second = malloc((new->second_length + 1) * sizeof(int));
-	ft_memcpy(new->second, old->second + 1, (old->second_length - 1) * sizeof(int));
+	ft_memcpy(new->second, old->second + 1
+				, (old->second_length - 1) * sizeof(int));
 	new->second[new->second_length - 1] = old->second[0];
 	new->second[new->second_length] = 0;
 	new->first = old->first;

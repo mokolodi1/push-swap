@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/15 00:56:32 by tfleming          #+#    #+#             */
-/*   Updated: 2015/02/15 00:58:01 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 13:30:36 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int			is_solved(t_try *try, t_search *search)
 	if (try->second_length)
 		return (0);
 	return (ft_memcmp(try->first, search->ascending_numbers
-							, try->first_length * sizeof(int)) == 0);
+						, try->first_length * sizeof(int)) == 0);
 }
 
 void				permutate(t_search *search)
