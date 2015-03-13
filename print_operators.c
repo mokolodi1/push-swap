@@ -44,7 +44,6 @@ void				print_operators(int length, t_operator *operators)
 {
 	int				i;
 
-	cleanup_solution(length, &operators);
 	i = 0;
 	while (i < length - 1)
 	{

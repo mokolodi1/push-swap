@@ -135,7 +135,7 @@ void					cutoff_reached(t_stack *second, t_stack *first
 										, int length);
 void					add_to_solution(t_solution *solution
 											, t_operator operator);
-void					cleanup_solution(int length, t_operator **operators);
+void					cleanup_solution(int *length, t_operator **operators);
 
 void					convert_entries_to_array(t_entry *entries, int length
 											, int *numbers);
