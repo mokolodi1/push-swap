@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 15:37:45 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 16:37:38 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void					print_operators(int length, t_operator *operators);
 ** log(N) time
 */
 
-# define DEBUG						1
+# define DEBUG						0
 
 # define PARTITION_CUTOFF			3
 
@@ -152,5 +152,9 @@ void					swap(t_stack *destination, t_stack *source);
 void					push(t_stack *destination, t_stack *source);
 void					rotate(t_stack *destination, t_stack *source);
 void					reverse_rotate(t_stack *destination, t_stack *source);
+
+
+
+void				print_stack(t_stack *stack);
 
 #endif

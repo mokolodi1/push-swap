@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 15:45:30 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 15:27:43 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/13 16:14:54 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void			three_things_part_one(t_stack *destination, t_stack *source
 void				cutoff_reached(t_stack *destination, t_stack *source
 														, int length)
 {
+	if (DEBUG) ft_printf("cutoff_reached: %d\n", length);
 	if (length == 0)
 		return ;
 	if (length == 1)

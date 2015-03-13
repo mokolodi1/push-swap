@@ -176,9 +176,9 @@ def generate_spreadsheet_data(low, high, step, number_of_tests):
         
 print("about to test all possible inputs up to 7 numbers")
 print()
-#for i in range(1, 8):
-#    tester_num_arguments(i, 0);
-#    print()
+for i in range(7, 8):
+    tester_num_arguments(i, 0);
+    print()
 
 print("done with testing all argument permutations between 1 and 7");
 
