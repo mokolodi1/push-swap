@@ -67,6 +67,7 @@ static void			handle_push_swap(int length, int *numbers)
 		if (!check_for_exception(length, numbers, &solution, &solution_length))
 			quicksort_push_swap(length, numbers, &solution, &solution_length);
 	}
+	cleanup_solution(solution_length, &solution);
 	print_operators(solution_length, solution);
 	ft_putchar('\n');
 }

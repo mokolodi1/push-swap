@@ -15,11 +15,12 @@
 static void			cleanup(int *should_delete, int *current
 							, int second_offender, int *delete_count)
 {
+	ft_printf("cleanup\n");
 	should_delete[*current] = 1;
 	should_delete[second_offender] = 1;
 	if (*current > 0)
 		(*current)--;
-	delete_count += 2;
+	(*delete_count) += 2;
 }
 
 static int			should_clean_neighbors(t_operator first, t_operator second)
@@ -54,7 +55,7 @@ static void			create_new_operators(int length, t_operator **operators
 		}
 		i++;
 	}
-	*operators  = new_operators;
+	*operators = new_operators;
 }
 
 // todo: combine rotates: ra, rb ==> rr; also reverse
@@ -69,13 +70,19 @@ void				cleanup_solution(int length, t_operator **operators)
 	i = 0;
 	while (i < length - 1)
 	{
+		ft_printf("i = %d\tfirst second = ", i);
+		print_operators(2, (*operators) + i);
+		ft_printf("\n");
 		if (!should_delete[i]
 			&& should_clean_neighbors((*operators)[i]
 									  , (*operators)[i + 1]))
 			cleanup(should_delete, &i, i + 1, &delete_count);
 		else
+		{
 			i++;
+		}
 	}
+	ft_printf("delete_count = %d\n", delete_count);
 	if (delete_count)
 		create_new_operators(length, operators, should_delete, delete_count);
 }
