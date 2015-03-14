@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 15:45:30 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 16:14:54 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:29:37 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void			three_things_part_two(t_stack *destination, t_stack *source
 }
 
 static void			three_things_part_one(t_stack *destination, t_stack *source
-											, int first, int second, int third)
+											, int first, int second)
 {
 	if (first < second)
 	{
@@ -46,13 +46,13 @@ static void			three_things_part_one(t_stack *destination, t_stack *source
 		rotate(destination, source);
 	}
 	else
-		three_things_part_two(destination, source, second, third);
+		three_things_part_two(destination, source, second
+								, source->first->next->next->number);
 }
 
 void				cutoff_reached(t_stack *destination, t_stack *source
 														, int length)
 {
-	if (DEBUG) ft_printf("cutoff_reached: %d\n", length);
 	if (length == 0)
 		return ;
 	if (length == 1)
@@ -72,6 +72,5 @@ void				cutoff_reached(t_stack *destination, t_stack *source
 	}
 	else if (length == 3)
 		three_things_part_one(destination, source, source->first->number
-								, source->first->next->number
-								, source->first->next->next->number);
+								, source->first->next->number);
 }

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_nth_entry.c                                    :+:      :+:    :+:   */
+/*   found_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/11 14:30:03 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 14:34:33 by tfleming         ###   ########.fr       */
+/*   Created: 2015/03/14 19:23:40 by tfleming          #+#    #+#             */
+/*   Updated: 2015/03/14 19:23:40 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// do I use this
-
-t_entry				*get_nth_entry(t_entry *first, int n)
+void				found_solution(t_try *try, t_search *search)
 {
-	int				i;
-
-	i = 1;
-	while (i < n)
-	{
-		first = first->next;
-		i++;
-	}
-	return (first);
+	if (search->solution)
+		free(search->solution);
+	search->solution = malloc(try->depth * sizeof(t_operator));
+	ft_memcpy(search->solution, try->operators
+					, try->depth * sizeof(t_operator));
+	search->solution_length = try->depth;
 }

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 13:27:20 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 13:27:49 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:25:44 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void				add_reverse_rotates(t_try *old, t_search *search
 		&& last_operator != ROTATE_B
 		&& last_operator != ROTATE_A_B)
 		ft_pq_add(search->pq, create_reverse_rotate_both(old, rotated_first
-														 , rotated_second));
+															, rotated_second));
 }

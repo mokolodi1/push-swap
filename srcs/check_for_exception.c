@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 17:39:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 17:52:59 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:27:25 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 ** annoying exceptions so I had to build something specifically for
 ** it.
 */
+
+static void			two_at_the_end(t_operator **solution, int *solution_length)
+{
+	*solution_length = 5;
+	*solution = malloc(*solution_length * sizeof(t_operator));
+	(*solution)[0] = REVERSE_ROTATE_A;
+	(*solution)[1] = REVERSE_ROTATE_A;
+	(*solution)[2] = SWAP_A;
+	(*solution)[3] = ROTATE_A;
+	(*solution)[4] = ROTATE_A;
+}
 
 int					check_for_exception(int length, int *numbers
 										, t_operator **solution
@@ -38,13 +49,7 @@ int					check_for_exception(int length, int *numbers
 		&& sorted[length - 1] == numbers[length - 2]
 		&& ft_memcmp(sorted, numbers, (length - 2) * sizeof(int)) == 0)
 	{
-		*solution_length = 5;
-		*solution = malloc(*solution_length * sizeof(t_operator));
-		(*solution)[0] = REVERSE_ROTATE_A;
-		(*solution)[1] = REVERSE_ROTATE_A;
-		(*solution)[2] = SWAP_A;
-		(*solution)[3] = ROTATE_A;
-		(*solution)[4] = ROTATE_A;
+		two_at_the_end(solution, solution_length);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/14 19:22:05 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 12:44:58 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:30:50 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,12 @@ static void			convert_to_indexes(int length, int **numbers)
 }
 
 void				path_finding_push_swap(int length, int *numbers
-										   , t_operator **solution
-										   , int *solution_length)
+											, t_operator **solution
+											, int *solution_length)
 {
 	t_search		search;
 	t_try			*peek;
 
-	// rb tree with solutions that we've already found ready to be re-used
 	setup_search(&search, length);
 	convert_to_indexes(length, &numbers);
 	ft_pq_add(search.pq, make_first_try(length, numbers));

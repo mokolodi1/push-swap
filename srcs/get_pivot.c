@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/11 14:36:34 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/11 14:36:35 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:40:59 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int			quickselect(int *numbers, int length, int from_highest)
 int					get_pivot(t_entry *entries, int length)
 {
 	int				numbers[length];
-	
+
 	convert_entries_to_array(entries, length, numbers);
 	return (quickselect(numbers, length, length / 2));
 }

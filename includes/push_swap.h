@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/14 19:00:43 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:35:03 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@
 # include "ft_printf.h"
 # include <limits.h>
 
-// should be 6
-# define PATH_FINDING_MAX_LENGTH		0
-# define DEBUG							0
+# define PATH_FINDING_MAX_LENGTH		6
 
 typedef enum			e_operator
 {
@@ -153,7 +151,5 @@ void					swap(t_stack *destination, t_stack *source);
 void					push(t_stack *destination, t_stack *source);
 void					rotate(t_stack *destination, t_stack *source);
 void					reverse_rotate(t_stack *destination, t_stack *source);
-
-void				print_stack(t_stack *stack);
 
 #endif

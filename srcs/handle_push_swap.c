@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 13:46:58 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/14 19:13:32 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:35:41 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void			rotate_cleanup(int *solution_length, t_operator **solution)
 		left = i;
 		right = left + 1;
 		while (left >= 0 && right <= *solution_length
-			   && !should_delete[left] && !should_delete[right]
-			   && should_cleanup(left, right, *solution))
+				&& !should_delete[left] && !should_delete[right]
+				&& should_cleanup(left, right, *solution))
 			found_cleanup(should_delete, &left, &right, &deleted);
 		i++;
 	}

@@ -175,7 +175,7 @@ def generate_spreadsheet_data(low, high, step, number_of_tests):
               + ' seconds per test and average length = ' + str(average_length))
 
 # Actual code
-        
+
 print("about to test all possible inputs up to 7 numbers")
 print()
 for i in range(1, 8):

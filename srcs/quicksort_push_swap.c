@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:47:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 16:18:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:24:31 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ static void			merge(t_stack *first_stack, t_stack *second_stack
 	second_length = length - first_length;
 	first_counter = 0;
 	second_counter = 0;
-	if (DEBUG) ft_printf("\n\n\nmerge:\n");
-	if (DEBUG) ft_printf("first:     ");
-	if (DEBUG) print_stack(first_stack);
-	if (DEBUG) ft_printf("\nsecond:    ");
-	if (DEBUG) print_stack(second_stack);
-	if (DEBUG) ft_printf("\n");
 	while (first_counter < first_length || second_counter < second_length)
 	{
 		if (first_counter >= first_length
@@ -81,7 +75,7 @@ static void			merge(t_stack *first_stack, t_stack *second_stack
 }
 
 static void			setup_stacks(t_stack *first_stack, t_stack *second_stack
-								 , t_solution *solution, t_entry *entries)
+									, t_solution *solution, t_entry *entries)
 {
 	first_stack->first = entries;
 	second_stack->first = NULL;
