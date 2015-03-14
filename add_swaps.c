@@ -43,7 +43,7 @@ static t_try		*create_both_swapped(t_try *old
 	new->second = second_swapped->second;
 	new->first[new->first_length]++;
 	new->second[new->second_length]++;
-	new->operators[new->depth - 1] = SWAP_S;
+	new->operators[new->depth - 1] = SWAP_BOTH;
 	set_score(new);
 	return (new);
 }
@@ -57,7 +57,7 @@ void				add_swaps(t_try *old, t_search *search
 	first_swapped = NULL;
 	second_swapped = NULL;
 	last_operator = old->depth ? old->operators[old->depth - 1] : NO_OPERATOR;
-	if (last_operator > SWAP_S || last_operator == NO_OPERATOR)
+	if (last_operator > SWAP_BOTH || last_operator == NO_OPERATOR)
 	{
 		if (old->first_length > 1)
 			ft_pq_add(search->pq

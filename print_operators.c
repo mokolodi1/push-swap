@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 17:25:15 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/07 18:30:59 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 12:59:18 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void			print_op(t_operator operator)
 		ft_putstr("sa");
 	else if (operator == SWAP_B)
 		ft_putstr("sb");
-	else if (operator == SWAP_S)
+	else if (operator == SWAP_BOTH)
 		ft_putstr("ss");
 	else if (operator == PUSH_A)
 		ft_putstr("pa");

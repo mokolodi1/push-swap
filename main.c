@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 18:59:56 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 15:28:15 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 13:48:00 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,6 @@ static void			validate_numbers(int length, int numbers[length])
 			ft_putendl_exit("Error", 1);
 		i++;
 	}
-}
-
-static void			handle_push_swap(int length, int *numbers)
-{
-	t_operator		*solution;
-	int				solution_length;
-
-	if (length <= PATH_FINDING_MAX_LENGTH)
-		path_finding_push_swap(length, numbers
-								, &solution, &solution_length);
-	else
-	{
-		if (!check_for_exception(length, numbers, &solution, &solution_length))
-			quicksort_push_swap(length, numbers, &solution, &solution_length);
-	}
-	print_operators(solution_length, solution);
-	ft_putchar('\n');
 }
 
 int					main(int argc, char **argv)

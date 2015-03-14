@@ -151,6 +151,8 @@ def test_thingy(thingy, should_print=1):
     begin_time = time()
     exitcode, out, err = get_exitcode_stdout_stderr(cmd)
     end_time = time()
+    if (len(err)):
+        print(err)
     output_length = is_correct(thingy, out, should_print);
     return end_time - begin_time, output_length
 
@@ -176,15 +178,16 @@ def generate_spreadsheet_data(low, high, step, number_of_tests):
         
 print("about to test all possible inputs up to 7 numbers")
 print()
-for i in range(7, 8):
-    tester_num_arguments(i, 0);
-    print()
+#for i in range(7, 8):
+#    tester_num_arguments(i, 0);
+#    print()
 
 print("done with testing all argument permutations between 1 and 7");
 
 print()
 print()
-print("The following will create a random input with a given number of elements 5 times and average the running time and output length for those calls.")
+tests_to_run = 5
+print("The following will create a random input with a given number of elements " + str(tests_to_run) + " times and average the running time and output length for those calls.")
 print("Place the following in the spreadsheet: ")
 print()
 # (low value, high value, step, number of tests to run per number of arguments)

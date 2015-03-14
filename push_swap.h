@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/31 19:00:08 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/13 16:37:38 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 13:50:39 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,27 @@
 # include <limits.h>
 
 # define PATH_FINDING_MAX_LENGTH		0
+# define DEBUG							0
+
+typedef enum			e_operator
+{
+	NO_OPERATOR
+	, SWAP_A, SWAP_B, SWAP_BOTH
+	, PUSH_A, PUSH_B
+	, ROTATE_A, ROTATE_B, ROTATE_A_B
+	, REVERSE_ROTATE_A, REVERSE_ROTATE_B, REVERSE_ROTATE_A_B
+}						t_operator;
+
+void					handle_push_swap(int length, int *numbers);
+int						check_for_exception(int length, int *numbers
+											, t_operator **solution
+											, int *solution_length);
+void					print_operators(int length, t_operator *operators);
 
 /*
 ** path finding solution: finds optimal solution using a priority
 ** queue and a heuristic.
 */
-
-typedef enum			e_operator
-{
-	NO_OPERATOR
-	, SWAP_A, SWAP_B, SWAP_S
-	, PUSH_A, PUSH_B
-	, ROTATE_A, ROTATE_B, ROTATE_A_B
-	, REVERSE_ROTATE_A, REVERSE_ROTATE_B, REVERSE_ROTATE_A_B
-}						t_operator;
 
 /*
 ** first/second[*_length] = number of other uses (other than original)
@@ -89,14 +96,11 @@ int						compare_tries(t_try *first, t_try *second);
 t_try					*create_general_try(t_try *old);
 void					free_try(t_try *try);
 void					set_score(t_try *try);
-void					print_operators(int length, t_operator *operators);
 
 /*
 ** quicksort: not necessarily optimal solution, but sorts in N *
 ** log(N) time
 */
-
-# define DEBUG						0
 
 # define PARTITION_CUTOFF			3
 
@@ -139,10 +143,6 @@ void					add_to_solution(t_solution *solution
 void					convert_entries_to_array(t_entry *entries, int length
 											, int *numbers);
 t_entry					*get_nth_entry(t_entry *first, int n);
-
-int						check_for_exception(int length, int *numbers
-											, t_operator **solution
-											, int *solution_length);
 
 /*
 ** located in stack_operations.c
