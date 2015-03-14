@@ -127,9 +127,9 @@ def tester_num_arguments(num_args, should_print=1):
     """
     tests push_swap for all possible inputs with num_args arguments
     """
-    permutation_list = itertools.permutations([i for i in range(num_args)])
-    print("about to test " + str(num_args) + " argument permutations ("
-          + str(len(list(permutation_list))) + " possible permutations)")
+    permutation_count = len(list(itertools.permutations(
+                                [i for i in range(num_args)])))
+    print("about to test " + str(num_args) + " argument permutations")
     i = 0
     for permutation in itertools.permutations([i for i in range(num_args)]):
         cmd = './push_swap ' + convert_permutation_to_arguments(permutation);
@@ -141,8 +141,8 @@ def tester_num_arguments(num_args, should_print=1):
         if (should_print):
             print("time = " + str(end_time - begin_time)[:7] + "\t", end = " ")
         is_correct(permutation, out, should_print);
-        if (i % 25 == 0):
-            print("tested " + str(i))
+        if (i % 50 == 0):
+            print("tested " + str(i) + " of " + str(permutation_count))
         i += 1
 
 def test_thingy(thingy, should_print=1):
@@ -178,9 +178,9 @@ def generate_spreadsheet_data(low, high, step, number_of_tests):
         
 print("about to test all possible inputs up to 7 numbers")
 print()
-#for i in range(7, 8):
-#    tester_num_arguments(i, 0);
-#    print()
+for i in range(1, 8):
+    tester_num_arguments(i, 0);
+    print()
 
 print("done with testing all argument permutations between 1 and 7");
 
@@ -191,6 +191,6 @@ print("The following will create a random input with a given number of elements 
 print("Place the following in the spreadsheet: ")
 print()
 # (low value, high value, step, number of tests to run per number of arguments)
-generate_spreadsheet_data(50, 2001, 50, 5)
+generate_spreadsheet_data(50, 2001, 50, tests_to_run)
 print()
 print("spreadsheet link: https://docs.google.com/spreadsheets/d/1yJpweZx_brf2LFbZkqXIxVdw681016XiLf9U3HxJUwI/edit?usp=sharing")

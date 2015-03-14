@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 13:46:58 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/14 14:00:36 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/03/14 19:13:32 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int			should_cleanup(int left, int right, t_operator *solution)
 {
-	t_operator		*left_op;
-	t_operator		*right_op;
+	t_operator		left_op;
+	t_operator		right_op;
 
 	left_op = solution[left];
 	right_op = solution[right];
@@ -27,8 +27,41 @@ static int			should_cleanup(int left, int right, t_operator *solution)
 	return (0);
 }
 
-static void			rotate_cleanup(int *solution_length
-								   , t_operator **solution)
+static void			found_cleanup(int *should_delete, int *left, int *right
+									, int *deleted)
+{
+	should_delete[*left] = 1;
+	should_delete[*right] = 1;
+	(*left)--;
+	(*right)++;
+	(*deleted) += 2;
+}
+
+static void			make_solution(int *solution_length
+									, t_operator **old_solution
+									, int *should_delete, int deleted)
+{
+	t_operator		*new_solution;
+	int				old;
+	int				new;
+
+	new_solution = malloc((*solution_length - deleted) * sizeof(int));
+	new = 0;
+	old = 0;
+	while (old < *solution_length)
+	{
+		if (!should_delete[old])
+		{
+			new_solution[new] = (*old_solution)[old];
+			new++;
+		}
+		old++;
+	}
+	*old_solution = new_solution;
+	*solution_length = *solution_length - deleted;
+}
+
+static void			rotate_cleanup(int *solution_length, t_operator **solution)
 {
 	int				should_delete[*solution_length];
 	int				i;
@@ -43,18 +76,13 @@ static void			rotate_cleanup(int *solution_length
 	{
 		left = i;
 		right = left + 1;
-		while (should_cleanup(left, right, *solution))
-		{
-			should_delete[left] = 1;
-			should_delete[right] = 1;
-			left--;
-			right++;
-			deleted += 2;
-		}
+		while (left >= 0 && right <= *solution_length
+			   && !should_delete[left] && !should_delete[right]
+			   && should_cleanup(left, right, *solution))
+			found_cleanup(should_delete, &left, &right, &deleted);
 		i++;
 	}
-	i = 0;
-	// move to an other buffer
+	make_solution(solution_length, solution, should_delete, deleted);
 }
 
 void				handle_push_swap(int length, int *numbers)

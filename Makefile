@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/26 19:03:08 by tfleming          #+#    #+#              #
-#    Updated: 2015/03/13 15:27:08 by tfleming         ###   ########.fr        #
+#    Updated: 2015/03/14 18:38:11 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -19,6 +19,7 @@ LIBFT =				"libft"
 FT_INCLUDES =			$(LIBFT)/includes
 
 COMPILED =			main.o \
+				handle_push_swap.o \
 				path_finding_push_swap.o \
 				permutate.o \
 				found_solution.o \
