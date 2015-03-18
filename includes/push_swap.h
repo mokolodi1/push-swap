@@ -21,6 +21,11 @@
 ** exit
 */
 
+/*
+** I'm so sorry for the state of this .h file. I should really clean
+** it up but I just validated this project and am laxy.
+*/
+
 # include "libft.h"
 # include "ft_printf.h"
 # include <limits.h>
