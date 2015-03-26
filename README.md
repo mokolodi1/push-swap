@@ -64,3 +64,9 @@ I have included a python testing script called testing.py. It makes sure the pro
 
 The above-mentioned spreadsheet:
 https://docs.google.com/spreadsheets/d/1yJpweZx_brf2LFbZkqXIxVdw681016XiLf9U3HxJUwI/edit?usp=sharing
+
+Authorized functions:  
+- write
+- malloc
+- free
+- exit
